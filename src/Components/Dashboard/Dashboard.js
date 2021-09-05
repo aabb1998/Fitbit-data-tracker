@@ -68,9 +68,9 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		display: "flex",
 		flexDirection: "column",
-		justifyContent: "center",
+		justifyContent: "left",
 		alignContent: "center",
-		textAlign: "center",
+		textAlign: "left",
 	},
 	profileImg: {
 		height: 110,
@@ -93,6 +93,14 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		height: 90,
 		padding: 20,
+		shadowColor: "gray",
+		shadowOffset: {
+			width: 0,
+			height: 7,
+		},
+		shadowOpacity: 1,
+		shadowRadius: 4,
+		elevation: 20,
 	},
 	userSectionName: {
 		fontSize: 20,
@@ -103,6 +111,14 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		padding: 20,
 		height: 200,
+		shadowColor: "gray",
+		shadowOffset: {
+			width: 0,
+			height: 7,
+		},
+		shadowOpacity: 1,
+		shadowRadius: 4,
+		elevation: 20,
 	},
 	fatigueSectionData: {
 		display: "flex",
