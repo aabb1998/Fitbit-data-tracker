@@ -4,6 +4,7 @@ import { Text, StyleSheet } from "react-native";
 import { HomeScreen } from "./Index";
 import { LoginScreen } from "./Index";
 import { RegistrationScreen } from "./Index";
+import { DashboardScreen } from "./Index";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -31,10 +32,17 @@ export default function App() {
 					</Stack.Screen>
 				) : (
 					<>
-						<Stack.Screen name="Login" component={LoginScreen} />
+						<Stack.Screen 
+							name="Login" 
+							component={LoginScreen} 
+						/>
 						<Stack.Screen
 							name="Registration"
 							component={RegistrationScreen}
+						/>
+						<Stack.Screen
+							name="Dashboard"
+							component={DashboardScreen}
 						/>
 					</>
 				)}
