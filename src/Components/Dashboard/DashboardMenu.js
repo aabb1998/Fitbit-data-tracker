@@ -22,7 +22,8 @@ export default DashboardMenu;
 
 const styles = StyleSheet.create({
 	floatingMenu: {
-		position: "relative",
+		position: "absolute",
+		width: "90%",
 		display: "flex",
 		flexDirection: "row",
 		justifyContent: "space-around",
