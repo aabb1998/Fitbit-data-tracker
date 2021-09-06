@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	SafeAreaView,
+	Image,
+	TouchableOpacity,
+} from "react-native";
 
 const Dashboard = () => {
 	return (
@@ -18,6 +25,26 @@ const Dashboard = () => {
 					}}
 				/>
 				<Text style={styles.userSectionName}>Abdul Abbou</Text>
+			</View>
+			<View style={styles.favoritesHeader}>
+				<Text style={{ fontSize: 18, fontWeight: "bold" }}>
+					Favorites
+				</Text>
+				<TouchableOpacity
+					style={{
+						backgroundColor: "#6777F8",
+						padding: 5,
+						paddingLeft: 8,
+						paddingRight: 8,
+						color: "white",
+						fontSize: 12,
+						fontWeight: 800,
+						fontFamily: "sans-serif",
+						borderRadius: 20,
+					}}
+				>
+					EDIT
+				</TouchableOpacity>
 			</View>
 			<View style={styles.fatigueSection}>
 				<View style={styles.fatigueSectionHeader}>
@@ -133,5 +160,11 @@ const styles = StyleSheet.create({
 		color: "#C5C5C5",
 		fontSize: 12,
 		fontWeight: "600",
+	},
+	favoritesHeader: {
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginBottom: 20,
 	},
 });
