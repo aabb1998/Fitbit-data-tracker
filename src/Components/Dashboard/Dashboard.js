@@ -7,6 +7,8 @@ import {
 	Image,
 	TouchableOpacity,
 } from "react-native";
+import DashboardFavorites from "./DashboardFavorites/DashboardFavorites";
+import DashboardMenu from "./DashboardMenu";
 
 const Dashboard = () => {
 	return (
@@ -76,6 +78,8 @@ const Dashboard = () => {
 					</Text>
 				</View>
 			</View>
+			<DashboardFavorites />
+			<DashboardMenu />
 		</SafeAreaView>
 	);
 };
