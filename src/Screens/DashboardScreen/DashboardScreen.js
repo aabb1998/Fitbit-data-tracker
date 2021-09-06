@@ -5,6 +5,9 @@ import styles from "./styles";
 export default function DashboardScreen({ navigation }) {
   const {spanText, spanText2} = props;
   
+  const onFooterLinkPress = () => {
+    navigation.navigate("Dashboard");
+};
   return (
     <View style={styles.container}>
         <KeyboardAwareScrollView
