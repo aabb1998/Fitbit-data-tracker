@@ -7,6 +7,7 @@ import { RegistrationScreen } from "./Index";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
+import Journal from "./src/Components/Journal/Journal"
 
 // import { decode, encode } from "base-64";
 // if (!global.btoa) {
@@ -38,7 +39,8 @@ export default function App() {
 						/>
 					</>
 				)} */}
-				<Stack.Screen name="Dashboard" component={Dashboard} />
+				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
+				<Stack.Screen name="Journal" component={Journal} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

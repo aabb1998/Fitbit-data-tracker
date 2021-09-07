@@ -1,18 +1,25 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import bed from "../../Assets/Dashboard/bed.png";
-import heartRate from "../../Assets/Dashboard/heart-rate.png";
 import bedwhite from "../../Assets/Dashboard/bed-white.png";
 import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
 import journal from "../../Assets/Dashboard/journal.png";
 import activity from "../../Assets/Dashboard/activity.png";
+
+const onJournalPress = () => {
+	navigation.navigate("Journal");
+};
 
 const DashboardMenu = () => {
 	return (
 		<View style={styles.floatingMenu}>
 			<Image style={styles.floatingMenuImage} source={bedwhite} />
 			<Image style={styles.floatingMenuImage} source={journal} />
-			<Image style={styles.floatingMenuImage} source={heartWhite} />
+			<Image 
+				style={styles.floatingMenuImage} 
+				source={heartWhite} 
+				onPress = {onJournalPress} 
+			/>
 			<Image style={styles.floatingMenuImage3} source={activity} />
 		</View>
 	);
