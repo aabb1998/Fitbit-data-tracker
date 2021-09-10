@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import styles from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
 import { firebase } from "../../firebase/config";
+import { oAuth } from "../../oAuth/oAuth";
 
 export default function LoginScreen({ navigation }) {
 	const [email, setEmail] = useState("");
@@ -32,6 +33,7 @@ export default function LoginScreen({ navigation }) {
 				.catch((error) => {
 					alert(error);
 				});
+			// oAuth();
 		}
 	};
 
