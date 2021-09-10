@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 import { firebase } from "../../firebase/config";
 
 export default function LoginScreen({ navigation }) {
@@ -13,44 +13,34 @@ export default function LoginScreen({ navigation }) {
 		navigation.navigate("Registration");
 	};
 
-	const onLoginPress = () => { 
-		
+	const onLoginPress = () => {
 		if (email == "") {
 			alert("Please enter email");
 			return;
-		}
-		else if(password==""){
+		} else if (password == "") {
 			alert("Please enter password");
 			return;
+		} else {
+			firebase
+				.auth()
+				.signInWithEmailAndPassword(email, password)
+				.then((response) => {
+					//navigation.navigate("Home",{email:email,id:documentSnapshot.data()});
+					const uid = response.user.uid;
+					navigation.navigate("Dashboard", { email: email, id: uid });
+				})
+				.catch((error) => {
+					alert(error);
+				});
 		}
-		else {
-
-		firebase
-			.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then((response) => {
-				//navigation.navigate("Home",{email:email,id:documentSnapshot.data()});
-				const uid = response.user.uid;
-				navigation.navigate("Home",{email:email,id:uid});
-
-				
-				  
-			})
-			.catch((error) => {
-				alert(error);
-			});
-
-		}
-
 	};
 
 	return (
-
-
 		<View style={styles.container}>
 			<LinearGradient
 				style={{ flex: 1, width: "100%" }}
-				colors={['#47268A', '#1D1141', '#5B1461']}>
+				colors={["#47268A", "#1D1141", "#5B1461"]}
+			>
 				<KeyboardAwareScrollView
 					style={{ flex: 1, width: "100%" }}
 					keyboardShouldPersistTaps="always"
@@ -97,8 +87,6 @@ export default function LoginScreen({ navigation }) {
 					</View>
 				</KeyboardAwareScrollView>
 			</LinearGradient>
-
 		</View>
-
 	);
 }

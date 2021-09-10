@@ -24,28 +24,30 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-
 			<Stack.Navigator screenOptions={{ headerShown: false }}>
-				{/* {user ? (
+				{user ? (
 					<Stack.Screen name="Home">
 						{(props) => <HomeScreen {...props} extraData={user} />}
 					</Stack.Screen>
 				) : (
 					<>
-						<Stack.Screen name="Login"
-							options={{headerLeft:false}}
-							component={LoginScreen} />
+						<Stack.Screen
+							name="Login"
+							options={{ headerLeft: false }}
+							component={LoginScreen}
+						/>
 						<Stack.Screen
 							name="Registration"
 							component={RegistrationScreen}
 						/>
-						<Stack.Screen name="Home"
-							options={{headerLeft:false}}
-							component={HomeScreen} />
-
+						<Stack.Screen
+							name="Dashboard"
+							options={{ headerLeft: false }}
+							component={Dashboard}
+						/>
 					</>
-				)} */}
-				<Stack.Screen name="Dashboard" component={Dashboard} />
+				)}
+				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
