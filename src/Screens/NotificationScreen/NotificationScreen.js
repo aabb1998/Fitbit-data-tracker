@@ -5,3 +5,8 @@ import styles from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
 import { firebase } from "../../firebase/config";
 
+export default function NotificationScreen({ navigation }) {
+
+    //From dashboard/home screen to notifications page
+    //through button? Home screen unclear
+}
