@@ -9,11 +9,13 @@ import activity from "../../Assets/Dashboard/activity.png";
 
 const DashboardMenu = () => {
 	return (
-		<View style={styles.floatingMenu}>
-			<Image style={styles.floatingMenuImage} source={bedwhite} />
-			<Image style={styles.floatingMenuImage} source={journal} />
-			<Image style={styles.floatingMenuImage} source={heartWhite} />
-			<Image style={styles.floatingMenuImage3} source={activity} />
+		<View>
+			<View style={styles.floatingMenu}>
+				<Image style={styles.floatingMenuImage} source={bedwhite} />
+				<Image style={styles.floatingMenuImage} source={journal} />
+				<Image style={styles.floatingMenuImage} source={heartWhite} />
+				<Image style={styles.floatingMenuImage3} source={activity} />
+			</View>
 		</View>
 	);
 };
@@ -23,7 +25,8 @@ export default DashboardMenu;
 const styles = StyleSheet.create({
 	floatingMenu: {
 		position: "absolute",
-		width: "90%",
+		alignContent: "center",
+		alignItems: "center",
 		display: "flex",
 		flexDirection: "row",
 		justifyContent: "space-around",
@@ -32,6 +35,8 @@ const styles = StyleSheet.create({
 		borderRadius: 30,
 		color: "white",
 		bottom: 10,
+		zIndex: 2,
+		width: "100%",
 	},
 	floatingMenuImage: {
 		width: 20,
