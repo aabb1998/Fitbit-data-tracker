@@ -3,6 +3,7 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
 import { firebase } from "../../firebase/config";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function RegistrationScreen({ navigation }) {
 	const [fullName, setFullName] = useState("");
@@ -26,19 +27,34 @@ export default function RegistrationScreen({ navigation }) {
 				const uid = response.user.uid;
 				const data = {
 					id: uid,
-					email,
-					fullName,
+					email:email ,
+					fullName:fullName,
 				};
-				const usersRef = firebase.firestore().collection("users");
-				usersRef
-					.doc(uid)
-					.set(data)
-					.then(() => {
-						navigation.navigate("Home", { user: data });
-					})
-					.catch((error) => {
-						alert(error);
-					});
+				console.log(uid);
+
+				
+
+				firebase
+				.firestore()
+				.collection("users")
+				.doc(uid)
+				.set({
+					id: uid,
+					email:email ,
+					fullName:fullName,
+				})
+				.then(() => {
+					//navigation.navigate("Home",{email:email,id:uid});
+					console.log("Document successfully written!");
+				})
+				.catch((error) => {
+					alert(error);
+					//console.error("Error writing document: ", error);
+				});
+
+				//navigation.navigate("Home",{email:email,id:uid});
+				navigation.navigate("Login",{});
+
 			})
 			.catch((error) => {
 				alert(error);
@@ -47,6 +63,10 @@ export default function RegistrationScreen({ navigation }) {
 
 	return (
 		<View style={styles.container}>
+			<LinearGradient
+				style={{ flex: 1, width: "100%" }}
+				colors={['#47268A', '#1D1141', '#5B1461']}>
+
 			<KeyboardAwareScrollView
 				style={{ flex: 1, width: "100%" }}
 				keyboardShouldPersistTaps="always"
@@ -111,6 +131,7 @@ export default function RegistrationScreen({ navigation }) {
 					</Text>
 				</View>
 			</KeyboardAwareScrollView>
+			</LinearGradient>
 		</View>
 	);
 }
