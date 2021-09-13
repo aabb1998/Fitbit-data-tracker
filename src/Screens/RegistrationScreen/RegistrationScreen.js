@@ -101,7 +101,7 @@ export default function RegistrationScreen({ navigation }) {
 				</TouchableOpacity>
 				<View style={styles.footerView}>
 					<Text style={styles.footerText}>
-						Already got an account?{" "}
+						Already have an account?{" "}
 						<Text
 							onPress={onFooterLinkPress}
 							style={styles.footerLink}
