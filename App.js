@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
-import React, { useEffect, useState } from "react";
-import { Text, StyleSheet } from "react-native";
+import React, { useEffect, useState, Component } from "react";
+import { Text, StyleSheet, View, Linking } from "react-native";
 import { HomeScreen } from "./Index";
 import { LoginScreen } from "./Index";
 import { RegistrationScreen } from "./Index";
