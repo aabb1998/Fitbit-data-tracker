@@ -7,41 +7,22 @@ import { RegistrationScreen } from "./Index";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
-import Journal from "./src/Components/Journal/Journal"
-
-// import { decode, encode } from "base-64";
-// if (!global.btoa) {
-// 	global.btoa = encode;
-// }
-// if (!global.atob) {
-// 	global.atob = decode;
-// }
+import Journal from "./src/Components/Journal/Journal";
+import Biological from "./src/Components/Biological/Biological";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-	const [loading, setLoading] = useState(true);
-	const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
-	return (
-		<NavigationContainer>
-			<Stack.Navigator screenOptions={{ headerShown: false }}>
-				{/* {user ? (
-					<Stack.Screen name="Home">
-						{(props) => <HomeScreen {...props} extraData={user} />}
-					</Stack.Screen>
-				) : (
-					<>
-						<Stack.Screen name="Login" component={LoginScreen} />
-						<Stack.Screen
-							name="Registration"
-							component={RegistrationScreen}
-						/>
-					</>
-				)} */}
-				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
-				<Stack.Screen name="Journal" component={Journal} />
-			</Stack.Navigator>
-		</NavigationContainer>
-	);
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {/*<Stack.Screen name="Biological" component={Biological} /> */}
+        { <Stack.Screen name="Journal" component={Journal} /> }
+        
+              </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

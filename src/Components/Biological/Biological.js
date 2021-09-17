@@ -11,9 +11,9 @@ const Journal = () => {
   const [activeSection, setActiveSection] = useState(0);
   const [sections, setSections] = useState([
     {
-      name: "Distance(km)",
+      name: "Chronological",
     },
-    { name: "Steps" },
+    { name: "Biological" },
   ]);
 
   const getChartParentSize = (event) => {
@@ -25,28 +25,30 @@ const Journal = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.mainContainer}>
-        <Text style={styles.textHeader}>Summary</Text>
+        <Text style={styles.textHeader}>Biological Age</Text>
         <View style={{ flexDirection: "row" }}>
-          <Text style={styles.textSmall}>How is your work out</Text>
+          <Text style={styles.textSmall}>
+            It's your chronological & biological age
+          </Text>
           <Image style={styles.journalIconSource} source={journalIcon} />
         </View>
 
         <View style={styles.cards}>
           <View style={styles.card}>
-            <Text style={styles.cardSmallText1}>In</Text>
-            <Text style={styles.cardLargeText}>1913</Text>
-            <Text style={styles.cardSmallText2}>Calories</Text>
+            <Text style={styles.cardSmallText1}>Chronological</Text>
+            <Text style={styles.cardLargeText}>35</Text>
+            <Text style={styles.cardSmallText2}>Age</Text>
           </View>
 
           <View style={styles.card}>
-            <Text style={styles.cardSmallText1}>Out</Text>
-            <Text style={styles.cardLargeText}>2143</Text>
-            <Text style={styles.cardSmallText2}>Calories</Text>
+            <Text style={styles.cardSmallText1}>Biological</Text>
+            <Text style={styles.cardLargeText}>28</Text>
+            <Text style={styles.cardSmallText2}>Age</Text>
           </View>
         </View>
 
         <View style={styles.graphCard}>
-          <Text style={styles.graphCardTitle}>Activity</Text>
+          <Text style={styles.graphCardTitle}>Body's Biological Age</Text>
           <View style={styles.graphCardList}>
             {sections.map((e, i) => (
               <Text
@@ -75,12 +77,12 @@ const Journal = () => {
                 ],
                 datasets: [
                   {
-                    data: [30, 15, 45, 26, 60, 30],
+                    data: [30, 15, 45, 26, 60, 44],
                   },
                 ],
               }}
               width={chartWidth + 50}
-              height={180}
+              height={160}
               chartConfig={{
                 backgroundColor: "#ffffff00",
                 backgroundGradientFrom: "#ffffff00",
@@ -101,9 +103,10 @@ const Journal = () => {
               }}
               bezier
               style={{
+                // marginVertical: 8,
+                // borderRadius: 16,
                 padding: 0,
                 margin: 0,
-                // overflow: "hidden",
               }}
             />
           </View>
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
   },
 
   cardSmallText1: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: "bold",
   },
 
@@ -249,10 +252,9 @@ const styles = StyleSheet.create({
   },
 
   chart: {
-    // overflow: "hidden",
+    overflow: "hidden",
     width: "100%",
-    marginLeft: -35,
+    marginLeft: -20,
     marginTop: 20,
-    backgroundColor: "#ffffff00",
   },
 });
