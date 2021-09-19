@@ -7,6 +7,8 @@ import { firebase } from "../../firebase/config";
 
 export default function NotificationScreen({ navigation }) {
 
-    //From dashboard/home screen to notifications page
-    //through button? Home screen unclear
+    const onNotificationsPress = () => {
+		navigation.navigate("Notifications");
+	};
+
 }

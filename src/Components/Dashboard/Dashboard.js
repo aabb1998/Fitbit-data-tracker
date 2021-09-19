@@ -34,6 +34,21 @@ const Dashboard = () => {
 				</Text>
 				<TouchableOpacity
 					style={{
+						backgroundColor: "#C4141A",
+						padding: 5,
+						paddingLeft: 8,
+						paddingRight: 8,
+						color: "#C5C5C5",
+						fontSize: 12,
+						fontWeight: 800,
+						fontFamily: "sans-serif",
+						borderRadius: 20,
+					}}
+				>
+					<Text>Notifications</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={{
 						backgroundColor: "#2D14C4",
 						padding: 5,
 						paddingLeft: 8,
