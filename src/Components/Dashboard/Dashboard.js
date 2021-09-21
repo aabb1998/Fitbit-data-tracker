@@ -14,32 +14,34 @@ import qs from "qs";
 import config from "../../../config.js";
 import { ScrollView } from "react-native-gesture-handler";
 
-function OAuth(client_id, cb) {
-	Linking.addEventListener("url", handleUrl);
-	function handleUrl(event) {
-		console.log(event.url);
-		Linking.removeEventListener("url", handleUrl);
-		const [, query_string] = event.url.match(/\#(.*)/);
-		console.log(query_string);
-		const query = qs.parse(query_string);
-		console.log(`query: ${JSON.stringify(query)}`);
-		cb(query.access_token);
-	}
-	const oauthurl = `https://www.fitbit.com/oauth2/authorize?${qs.stringify({
-		client_id,
-		response_type: "token",
-		scope: "heartrate activity activity profile sleep",
-		redirect_uri: "fitbit://fit",
-		expires_in: "31536000",
-	})}`;
-	console.log(oauthurl);
-	Linking.openURL(oauthurl).catch((err) =>
-		console.error("Error processing linking", err)
-	);
-}
+// function OAuth(client_id, cb) {
+// 	Linking.addEventListener("url", handleUrl);
+// 	function handleUrl(event) {
+// 		console.log(event.url);
+// 		Linking.removeEventListener("url", handleUrl);
+// 		const [, query_string] = event.url.match(/\#(.*)/);
+// 		console.log(query_string);
+// 		const query = qs.parse(query_string);
+// 		console.log(`query: ${JSON.stringify(query)}`);
+// 		cb(query.access_token);
+// 	}
+// 	const oauthurl = `https://www.fitbit.com/oauth2/authorize?${qs.stringify({
+// 		client_id,
+// 		response_type: "token",
+// 		scope: "heartrate activity activity profile sleep",
+// 		redirect_uri: "http://localhost",
+// 		expires_in: "31536000",
+// 	})}`;
+// 	console.log(oauthurl);
+// 	Linking.openURL(oauthurl).catch((err) =>
+// 		console.error("Error processing linking", err)
+// 	);
+// }
+
+const access_token = `eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM0JCSzUiLCJzdWIiOiI5TEJSUEMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3c2xlIHdhY3QiLCJleHAiOjE2MzI4MzQ0NTgsImlhdCI6MTYzMjIzMDgxNH0.0HDP3KpI2KUffzv1T1H47S2FJW9p8JkLgcj3lZJJxmc`;
 
 function getData(access_token) {
-	fetch("https://api.fitbit.com/1.2/user/-/sleep/date/2017-06-27.json", {
+	fetch("https://api.fitbit.com/1/user/-/profile.json", {
 		method: "GET",
 		headers: {
 			Authorization: `Bearer ${access_token}`,
@@ -57,7 +59,8 @@ function getData(access_token) {
 
 const Dashboard = () => {
 	const oAuthClick = () => {
-		OAuth(config.client_id, getData);
+		// OAuth(config.client_id, getData);
+		getData(access_token);
 	};
 
 	return (
