@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -13,18 +13,20 @@ import DashboardMenu from "./DashboardMenu";
 import qs from "qs";
 import config from "../../../config.js";
 import { ScrollView } from "react-native-gesture-handler";
+import URL from "url-parse";
 
 // function OAuth(client_id, cb) {
-// 	Linking.addEventListener("url", handleUrl);
-// 	function handleUrl(event) {
-// 		console.log(event.url);
-// 		Linking.removeEventListener("url", handleUrl);
-// 		const [, query_string] = event.url.match(/\#(.*)/);
-// 		console.log(query_string);
-// 		const query = qs.parse(query_string);
-// 		console.log(`query: ${JSON.stringify(query)}`);
-// 		cb(query.access_token);
-// 	}
+// Linking.addEventListener("url", handleUrl);
+// function handleUrl(event) {
+// 	console.log(event.url);
+// 	Linking.removeEventListener("url", handleUrl);
+// 	const [, query_string] = event.url.match(/\#(.*)/);
+// 	console.log(query_string);
+// 	const query = qs.parse(query_string);
+// 	console.log(`query: ${JSON.stringify(query)}`);
+// 	cb(query.access_token);
+// }
+
 // 	const oauthurl = `https://www.fitbit.com/oauth2/authorize?${qs.stringify({
 // 		client_id,
 // 		response_type: "token",
@@ -36,32 +38,101 @@ import { ScrollView } from "react-native-gesture-handler";
 // 	Linking.openURL(oauthurl).catch((err) =>
 // 		console.error("Error processing linking", err)
 // 	);
+// 	Linking.addEventListener('url', ({url}) => {
+// 		const
+// 	})
 // }
 
-const access_token = `eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM0JCSzUiLCJzdWIiOiI5TEJSUEMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3c2xlIHdhY3QiLCJleHAiOjE2MzI4MzQ0NTgsImlhdCI6MTYzMjIzMDgxNH0.0HDP3KpI2KUffzv1T1H47S2FJW9p8JkLgcj3lZJJxmc`;
-
-function getData(access_token) {
-	fetch("https://api.fitbit.com/1/user/-/profile.json", {
-		method: "GET",
-		headers: {
-			Authorization: `Bearer ${access_token}`,
-		},
-		// body: `root=auto&path=${Math.random()}`
-	})
-		.then((res) => res.json())
-		.then((res) => {
-			console.log(`res: ${JSON.stringify(res)}`);
-		})
-		.catch((err) => {
-			console.error("Error: ", err);
-		});
-}
+const access_token = `eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM0JCSzUiLCJzdWIiOiI5TEJSUEMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdhY3Qgd3NldCB3bG9jIiwiZXhwIjoxNjMyOTk0NTk3LCJpYXQiOjE2MzI0MDc4Nzd9.Zd-O9Yz4Z2qBxlxqEoRQ02AzuWKA0AYdDqnUrnYNUDs`;
 
 const Dashboard = () => {
+	const [profileData, setProfileData] = useState([]);
+	const [sleepData, setSleepData] = useState();
+	const [heartData, setHeartData] = useState();
+
 	const oAuthClick = () => {
 		// OAuth(config.client_id, getData);
-		getData(access_token);
+		// getData(access_token);
 	};
+
+	function getData(access_token) {
+		fetch("https://api.fitbit.com/1/user/-/profile.json", {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${access_token}`,
+			},
+			// body: `root=auto&path=${Math.random()}`
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				// console.log(`res: ${JSON.stringify(res)}`);
+				setProfileData(res);
+			})
+			.catch((err) => {
+				console.error("Error: ", err);
+			});
+	}
+
+	useEffect(() => {
+		getData(access_token);
+	}, []);
+
+	// useEffect(() => {
+	// 	{
+	// 		profileData
+	// 			? console.log(profileData.user)
+	// 			: console.log("Not loaded");
+	// 	}
+	// }, [profileData]);
+
+	// ACTIVITY
+	// GET https://api.fitbit.com/1/user/[user-id]/activities/date/[date].json
+
+	// SLEEP
+	// GET https://api.fitbit.com/1.2/user/-/sleep/list.json
+
+	// useEffect(() => {
+	// 	fetch(
+	// 		"https://api.fitbit.com/1.2/user/-/sleep/list.json?afterDate=2017-03-27&sort=desc&offset=0&limit=1",
+	// 		{
+	// 			method: "GET",
+	// 			headers: {
+	// 				Authorization: `Bearer ${access_token}`,
+	// 			},
+	// 			// body: `root=auto&path=${Math.random()}`
+	// 		}
+	// 	)
+	// 		.then((res) => res.json())
+	// 		.then((res) => {
+	// 			// console.log(`res (sleep): ${JSON.stringify(res)}`);
+	// 			setSleepData(res);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.error("Error: ", err);
+	// 		});
+	// }, []);
+
+	// // HEART RATE
+	// useEffect(() => {
+	// 	fetch(
+	// 		"https://api.fitbit.com/1/user/-/activities/heart/date/today/1d.json",
+	// 		{
+	// 			method: "GET",
+	// 			headers: {
+	// 				Authorization: `Bearer ${access_token}`,
+	// 			},
+	// 			// body: `root=auto&path=${Math.random()}`
+	// 		}
+	// 	)
+	// 		.then((res) => res.json())
+	// 		.then((res) => {
+	// 			// console.log(`res (heart rate): ${JSON.stringify(res)}`);
+	// 			setHeartData(res);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.error("Error: ", err);
+	// 		});
+	// }, []);
 
 	return (
 		<SafeAreaView style={{ backgroundColor: "#F2F6F9", padding: 20 }}>
@@ -71,7 +142,9 @@ const Dashboard = () => {
 				showsVerticalScrollIndicator={false}
 			>
 				<View style={styles.mainContainer}>
-					<Text style={styles.textHeader}>Welcome Back</Text>
+					<Text style={styles.textHeader}>
+						{profileData && console.log(profileData?.user?.age)}
+					</Text>
 					<Text style={styles.textSmall}>
 						Your sleep data is ready to view!
 					</Text>
@@ -84,6 +157,7 @@ const Dashboard = () => {
 						}}
 					/>
 					<Text style={styles.userSectionName}>Abdul Abbou</Text>
+					<Text style={styles.userSectionName}></Text>
 				</View>
 				<View style={styles.favoritesHeader}>
 					<Text style={{ fontSize: 18, fontWeight: "bold" }}>
