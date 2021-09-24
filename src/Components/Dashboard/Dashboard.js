@@ -15,35 +15,32 @@ import config from "../../../config.js";
 import { ScrollView } from "react-native-gesture-handler";
 import URL from "url-parse";
 
-// function OAuth(client_id, cb) {
-// Linking.addEventListener("url", handleUrl);
-// function handleUrl(event) {
-// 	console.log(event.url);
-// 	Linking.removeEventListener("url", handleUrl);
-// 	const [, query_string] = event.url.match(/\#(.*)/);
-// 	console.log(query_string);
-// 	const query = qs.parse(query_string);
-// 	console.log(`query: ${JSON.stringify(query)}`);
-// 	cb(query.access_token);
-// }
+function OAuth(client_id, cb) {
+	Linking.addEventListener("url", handleUrl);
+	function handleUrl(event) {
+		console.log(event.url);
+		Linking.removeEventListener("url", handleUrl);
+		const [, query_string] = event.url.match(/\#(.*)/);
+		console.log(query_string);
+		const query = qs.parse(query_string);
+		console.log(`query: ${JSON.stringify(query)}`);
+		cb(query.access_token);
+	}
 
-// 	const oauthurl = `https://www.fitbit.com/oauth2/authorize?${qs.stringify({
-// 		client_id,
-// 		response_type: "token",
-// 		scope: "heartrate activity activity profile sleep",
-// 		redirect_uri: "http://localhost",
-// 		expires_in: "31536000",
-// 	})}`;
-// 	console.log(oauthurl);
-// 	Linking.openURL(oauthurl).catch((err) =>
-// 		console.error("Error processing linking", err)
-// 	);
-// 	Linking.addEventListener('url', ({url}) => {
-// 		const
-// 	})
-// }
+	const oauthurl = `https://www.fitbit.com/oauth2/authorize?${qs.stringify({
+		client_id,
+		response_type: "token",
+		scope: "heartrate activity activity profile sleep",
+		redirect_uri: "http://localhost",
+		expires_in: "31536000",
+	})}`;
+	console.log(oauthurl);
+	Linking.openURL(oauthurl).catch((err) =>
+		console.error("Error processing linking", err)
+	);
+}
 
-const access_token = `eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM0JCSzUiLCJzdWIiOiI5TEJSUEMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdhY3Qgd3NldCB3bG9jIiwiZXhwIjoxNjMyOTk0NTk3LCJpYXQiOjE2MzI0MDc4Nzd9.Zd-O9Yz4Z2qBxlxqEoRQ02AzuWKA0AYdDqnUrnYNUDs`;
+// const access_token = `eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM0JCSzUiLCJzdWIiOiI5TEJSUEMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdhY3Qgd3NldCB3bG9jIiwiZXhwIjoxNjMyOTk0NTk3LCJpYXQiOjE2MzI0MDc4Nzd9.Zd-O9Yz4Z2qBxlxqEoRQ02AzuWKA0AYdDqnUrnYNUDs`;
 
 const Dashboard = () => {
 	const [profileData, setProfileData] = useState([]);
@@ -51,7 +48,7 @@ const Dashboard = () => {
 	const [heartData, setHeartData] = useState();
 
 	const oAuthClick = () => {
-		// OAuth(config.client_id, getData);
+		OAuth(config.client_id, getData);
 		// getData(access_token);
 	};
 
@@ -73,9 +70,9 @@ const Dashboard = () => {
 			});
 	}
 
-	useEffect(() => {
-		getData(access_token);
-	}, []);
+	// useEffect(() => {
+	// 	getData(access_token);
+	// }, []);
 
 	// useEffect(() => {
 	// 	{
@@ -143,7 +140,7 @@ const Dashboard = () => {
 			>
 				<View style={styles.mainContainer}>
 					<Text style={styles.textHeader}>
-						{profileData && console.log(profileData?.user?.age)}
+						{profileData && console.log(profileData?.user)}
 					</Text>
 					<Text style={styles.textSmall}>
 						Your sleep data is ready to view!
