@@ -7,6 +7,7 @@ import {
 	Image,
 	TouchableOpacity,
 	Linking,
+	Alert,
 } from "react-native";
 
 import qs from "qs";
@@ -14,6 +15,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import URL from "url-parse";
 import { WebView, WebViewNavigation } from "react-native-webview";
 import URLParse from "url-parse";
+import config from "../../config";
 
 const FitbitWebView = () => {
 	const [accessToken, setAccessToken] = useState();
@@ -60,6 +62,24 @@ const FitbitWebView = () => {
 				if (!accessToken) {
 					setAccessToken(nativeEvent.url);
 				}
+			}}
+			onMessage={(event) => Alert.alert("Test")}
+			renderError={() => {
+				return (
+					<View
+						style={{
+							width: "100%",
+							height: "100%",
+							backgroundColor: "white",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						<Text style={{ color: "black" }}>
+							Account linked. Press back to return.
+						</Text>
+					</View>
+				);
 			}}
 		/>
 	);
