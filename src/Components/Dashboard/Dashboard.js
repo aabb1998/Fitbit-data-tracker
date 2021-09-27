@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FunctionComponent } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -14,6 +14,11 @@ import qs from "qs";
 import config from "../../../config.js";
 import { ScrollView } from "react-native-gesture-handler";
 import URL from "url-parse";
+import { WebView, WebViewNavigation } from "react-native-webview";
+import URLParse from "url-parse";
+import FitbitWebView from "../FitbitWebView";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 function OAuth(client_id, cb) {
 	Linking.addEventListener("url", handleUrl);
@@ -42,13 +47,13 @@ function OAuth(client_id, cb) {
 
 // const access_token = `eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM0JCSzUiLCJzdWIiOiI5TEJSUEMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdhY3Qgd3NldCB3bG9jIiwiZXhwIjoxNjMyOTk0NTk3LCJpYXQiOjE2MzI0MDc4Nzd9.Zd-O9Yz4Z2qBxlxqEoRQ02AzuWKA0AYdDqnUrnYNUDs`;
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
 	const [profileData, setProfileData] = useState([]);
 	const [sleepData, setSleepData] = useState();
 	const [heartData, setHeartData] = useState();
 
 	const oAuthClick = () => {
-		OAuth(config.client_id, getData);
+		// OAuth(config.client_id, getData);
 		// getData(access_token);
 	};
 
@@ -62,74 +67,13 @@ const Dashboard = () => {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				// console.log(`res: ${JSON.stringify(res)}`);
+				console.log(`res: ${JSON.stringify(res)}`);
 				setProfileData(res);
 			})
 			.catch((err) => {
 				console.error("Error: ", err);
 			});
 	}
-
-	// useEffect(() => {
-	// 	getData(access_token);
-	// }, []);
-
-	// useEffect(() => {
-	// 	{
-	// 		profileData
-	// 			? console.log(profileData.user)
-	// 			: console.log("Not loaded");
-	// 	}
-	// }, [profileData]);
-
-	// ACTIVITY
-	// GET https://api.fitbit.com/1/user/[user-id]/activities/date/[date].json
-
-	// SLEEP
-	// GET https://api.fitbit.com/1.2/user/-/sleep/list.json
-
-	// useEffect(() => {
-	// 	fetch(
-	// 		"https://api.fitbit.com/1.2/user/-/sleep/list.json?afterDate=2017-03-27&sort=desc&offset=0&limit=1",
-	// 		{
-	// 			method: "GET",
-	// 			headers: {
-	// 				Authorization: `Bearer ${access_token}`,
-	// 			},
-	// 			// body: `root=auto&path=${Math.random()}`
-	// 		}
-	// 	)
-	// 		.then((res) => res.json())
-	// 		.then((res) => {
-	// 			// console.log(`res (sleep): ${JSON.stringify(res)}`);
-	// 			setSleepData(res);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.error("Error: ", err);
-	// 		});
-	// }, []);
-
-	// // HEART RATE
-	// useEffect(() => {
-	// 	fetch(
-	// 		"https://api.fitbit.com/1/user/-/activities/heart/date/today/1d.json",
-	// 		{
-	// 			method: "GET",
-	// 			headers: {
-	// 				Authorization: `Bearer ${access_token}`,
-	// 			},
-	// 			// body: `root=auto&path=${Math.random()}`
-	// 		}
-	// 	)
-	// 		.then((res) => res.json())
-	// 		.then((res) => {
-	// 			// console.log(`res (heart rate): ${JSON.stringify(res)}`);
-	// 			setHeartData(res);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.error("Error: ", err);
-	// 		});
-	// }, []);
 
 	return (
 		<SafeAreaView style={{ backgroundColor: "#F2F6F9", padding: 20 }}>
@@ -209,7 +153,7 @@ const Dashboard = () => {
 				<DashboardFavorites />
 				<TouchableOpacity
 					style={styles.fitbitConnectBtn}
-					onPress={oAuthClick}
+					onPress={() => navigation.navigate("fitbitView")}
 				>
 					<Text style={{ textAlign: "center" }}>
 						Connect to Fitbit Account
@@ -218,6 +162,26 @@ const Dashboard = () => {
 			</ScrollView>
 			<DashboardMenu />
 		</SafeAreaView>
+		// <WebView
+		// 	source={{
+		// 		uri: `https://www.fitbit.com/oauth2/authorize?${qs.stringify({
+		// 			client_id: "23BBK5",
+		// 			response_type: "token",
+		// 			scope: "heartrate activity activity profile sleep",
+		// 			redirect_uri: "http://localhost",
+		// 			expires_in: "31536000",
+		// 		})}`,
+		// 	}}
+		// 	onNavigationStateChange={onNavigationStateChange}
+		// 	onError={(syntheticEvent) => {
+		// 		const { nativeEvent } = syntheticEvent;
+		// 		// console.log("WebView error: ", nativeEvent);
+		// 		// console.log(nativeEvent.url);
+		// 		if (!accessToken) {
+		// 			setAccessToken(nativeEvent.url);
+		// 		}
+		// 	}}
+		// />
 	);
 };
 
