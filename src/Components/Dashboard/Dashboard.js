@@ -6,11 +6,77 @@ import {
 	SafeAreaView,
 	Image,
 	TouchableOpacity,
+	Linking,
 } from "react-native";
 import DashboardFavorites from "./DashboardFavorites/DashboardFavorites";
 import DashboardMenu from "./DashboardMenu";
+import apiconfig from "../../../apiconfig.js"
+
+
+/*protocol: 'oauth2',
+              useParamsAuth: false,
+              auth: 'https://www.fitbit.com/oauth2/authorize',
+              token: 'https://api.fitbit.com/oauth2/token',
+              scope: ['profile', 'activity', 'heartrate', 'location'],
+              profile: function(credentials, params, get, callback) {
+                  get('https://api.fitbit.com/1/user/-/profile.json', null, function(profile) {
+                      credentials.profile = {
+                          id: profile.user.encodedId,
+                          displayName: profile.user.displayName,
+                          name: profile.user.fullName
+                      };
+
+                      return callback();
+                  });
+              }
+              */
+
+
+function OAuth(client_id, call) {
+    Linking.addEventListener("url", handleUrl);
+    function handleUrl(event) {
+    	console.log(event.url);
+    	Linking.removeEventListener("url", handleUrl);
+    	const [, query_string] = event.url.match(/\#(.*)/);
+    	console.log(query_string);
+    	const query = qs.parse(query_string);
+    	console.log(`query: ${JSON.stringify(query)}`);
+    	call(query.access_token);
+    }
+    const URLoauth = 'https://www.fitbit.com/oauth2/authorize?',
+    		client_id,
+    		response_type: "token",
+    		scope: ['profile', 'activity', 'heartrate', 'sleep'],
+    		redirect_uri: "fitbit://fit",
+    		expires_in: "28800",
+    	})}`;
+
+    	console.log(URLoauth);
+    	Linking.openURL(URLoauth).catch((err) =>
+    		console.error("Error linking", err)
+    	);
+    }
+
+function retrieveData(access_token) {
+fetch(/*add data url*/, {
+		method: "GET",
+		headers: {
+			Authorization: 'Bearer ${access_token}',
+		}
+	})
+		.then((res) => res.json())
+		.then((res) => {
+			console.log('res: ${JSON.stringify(res)}');
+		})
+		.catch((err) => {
+			console.error("Error: ", err);
+		});
+}
 
 const Dashboard = () => {
+    const oAuthClick = () => {
+        OAuth(apiconfig.client_id, retrieveData);
+    }
 	return (
 		<SafeAreaView style={{ backgroundColor: "#F2F6F9", padding: 20 }}>
 			<View style={styles.mainContainer}>
