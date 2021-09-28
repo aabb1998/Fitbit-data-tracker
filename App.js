@@ -26,7 +26,7 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator screenOptions={{ headerShown: false }}>
-				{/* {user ? (
+				{user ? (
 					<Stack.Screen name="Home">
 						{(props) => <HomeScreen {...props} extraData={user} />}
 					</Stack.Screen>
@@ -46,10 +46,14 @@ export default function App() {
 							options={{ headerLeft: false }}
 							component={Dashboard}
 						/>
+						<Stack.Screen
+							name="fitbitView"
+							component={FitbitWebView}
+						/>
 					</>
-				)} */}
-				<Stack.Screen name="Dashboard" component={Dashboard} />
-				<Stack.Screen name="fitbitView" component={FitbitWebView} />
+				)}
+				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
+				{/* <Stack.Screen name="fitbitView" component={FitbitWebView} /> */}
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

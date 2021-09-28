@@ -16,8 +16,10 @@ import URL from "url-parse";
 import { WebView, WebViewNavigation } from "react-native-webview";
 import URLParse from "url-parse";
 import config from "../../config";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-const FitbitWebView = () => {
+const FitbitWebView = ({ navigation }) => {
 	const [accessToken, setAccessToken] = useState();
 	const [accountToken, setAccountToken] = useState();
 
@@ -76,8 +78,37 @@ const FitbitWebView = () => {
 						}}
 					>
 						<Text style={{ color: "black" }}>
-							Account linked. Press back to return.
+							Your account has been successfully linked.
 						</Text>
+						<TouchableOpacity
+							style={{
+								backgroundColor: "#2D14C4",
+								padding: 10,
+								paddingLeft: 8,
+								paddingRight: 8,
+								color: "white",
+								fontSize: 12,
+								fontWeight: 800,
+								fontFamily: "sans-serif",
+								borderRadius: 20,
+								marginTop: 20,
+								display: "flex",
+								flexDirection: "row",
+								width: 200,
+								justifyContent: "space-around",
+							}}
+							onPress={() => navigation.navigate("Dashboard")}
+						>
+							<Image
+								style={styles.returnImg}
+								source={{
+									uri: "https://img.icons8.com/material-outlined/2x/ffffff/return.png",
+								}}
+							/>
+							<Text style={styles.returnText}>
+								Return to dashboard
+							</Text>
+						</TouchableOpacity>
 					</View>
 				);
 			}}
@@ -87,4 +118,12 @@ const FitbitWebView = () => {
 
 export default FitbitWebView;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	returnText: {
+		color: "white",
+	},
+	returnImg: {
+		height: 20,
+		width: 20,
+	},
+});

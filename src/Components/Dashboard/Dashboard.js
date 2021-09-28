@@ -20,42 +20,10 @@ import FitbitWebView from "../FitbitWebView";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-function OAuth(client_id, cb) {
-	Linking.addEventListener("url", handleUrl);
-	function handleUrl(event) {
-		console.log(event.url);
-		Linking.removeEventListener("url", handleUrl);
-		const [, query_string] = event.url.match(/\#(.*)/);
-		console.log(query_string);
-		const query = qs.parse(query_string);
-		console.log(`query: ${JSON.stringify(query)}`);
-		cb(query.access_token);
-	}
-
-	const oauthurl = `https://www.fitbit.com/oauth2/authorize?${qs.stringify({
-		client_id,
-		response_type: "token",
-		scope: "heartrate activity activity profile sleep",
-		redirect_uri: "http://localhost",
-		expires_in: "31536000",
-	})}`;
-	console.log(oauthurl);
-	Linking.openURL(oauthurl).catch((err) =>
-		console.error("Error processing linking", err)
-	);
-}
-
-// const access_token = `eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyM0JCSzUiLCJzdWIiOiI5TEJSUEMiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdhY3Qgd3NldCB3bG9jIiwiZXhwIjoxNjMyOTk0NTk3LCJpYXQiOjE2MzI0MDc4Nzd9.Zd-O9Yz4Z2qBxlxqEoRQ02AzuWKA0AYdDqnUrnYNUDs`;
-
 const Dashboard = ({ navigation }) => {
 	const [profileData, setProfileData] = useState([]);
 	const [sleepData, setSleepData] = useState();
 	const [heartData, setHeartData] = useState();
-
-	const oAuthClick = () => {
-		// OAuth(config.client_id, getData);
-		// getData(access_token);
-	};
 
 	function getData(access_token) {
 		fetch("https://api.fitbit.com/1/user/-/profile.json", {
@@ -162,26 +130,6 @@ const Dashboard = ({ navigation }) => {
 			</ScrollView>
 			<DashboardMenu />
 		</SafeAreaView>
-		// <WebView
-		// 	source={{
-		// 		uri: `https://www.fitbit.com/oauth2/authorize?${qs.stringify({
-		// 			client_id: "23BBK5",
-		// 			response_type: "token",
-		// 			scope: "heartrate activity activity profile sleep",
-		// 			redirect_uri: "http://localhost",
-		// 			expires_in: "31536000",
-		// 		})}`,
-		// 	}}
-		// 	onNavigationStateChange={onNavigationStateChange}
-		// 	onError={(syntheticEvent) => {
-		// 		const { nativeEvent } = syntheticEvent;
-		// 		// console.log("WebView error: ", nativeEvent);
-		// 		// console.log(nativeEvent.url);
-		// 		if (!accessToken) {
-		// 			setAccessToken(nativeEvent.url);
-		// 		}
-		// 	}}
-		// />
 	);
 };
 
@@ -223,14 +171,6 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		height: 90,
 		padding: 20,
-		// shadowColor: "gray",
-		// shadowOffset: {
-		// 	width: 0,
-		// 	height: 7,
-		// },
-		// shadowOpacity: 1,
-		// shadowRadius: 4,
-		// elevation: 20,
 	},
 	userSectionName: {
 		fontSize: 20,
