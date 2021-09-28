@@ -18,10 +18,12 @@ import URLParse from "url-parse";
 import config from "../../config";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import firebase from "firebase";
 
 const FitbitWebView = ({ navigation }) => {
 	const [accessToken, setAccessToken] = useState();
-	const [accountToken, setAccountToken] = useState();
+	const [accountToken, setAccountToken] = useState("");
+	const [userUid, setUserUid] = useState("");
 
 	useEffect(() => {
 		var regex = /[#?&]([^=#]+)=([^&#]*)/g,
@@ -44,6 +46,59 @@ const FitbitWebView = ({ navigation }) => {
 	const onNavigationStateChange = (navigationState) => {
 		const url = navigationState.url;
 	};
+
+	useEffect(() => {
+		const getUserId = () => {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					setUserUid(user.uid);
+				}
+			});
+		};
+		const getUserCollections = async () => {
+			const userCollection = await firebase
+				.firestore()
+				.collection("users")
+				.get();
+			const docs = userCollection.docs.map((doc) => doc.data());
+			console.log({ docs });
+		};
+		getUserCollections();
+		getUserId();
+	}, []);
+
+	useEffect(() => {
+		const userID = userUid;
+		const addUser = () => {
+			// firebase
+			// 	.firestore()
+			// 	.collection("users")
+			// 	.add({
+			// 		uid: userUid,
+			// 		token: accountToken,
+			// 	})
+			// 	.then(() => {
+			// 		console.log(userUid + " has been added");
+			// 	});
+			if (userUid && accountToken) {
+				firebase
+					.firestore()
+					.collection("users")
+					.doc(userID)
+					.set({
+						uid: userUid,
+						token: accountToken,
+					})
+					.then(() => {
+						console.log(userUid + " has been added");
+					});
+			} else {
+				console.log("User not loaded in");
+			}
+		};
+		addUser();
+		console.log(userUid);
+	}, [userUid]);
 
 	return (
 		<WebView
