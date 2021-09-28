@@ -61,7 +61,6 @@ const FitbitWebView = ({ navigation }) => {
 				.collection("users")
 				.get();
 			const docs = userCollection.docs.map((doc) => doc.data());
-			console.log({ docs });
 		};
 		getUserCollections();
 		getUserId();
@@ -85,12 +84,11 @@ const FitbitWebView = ({ navigation }) => {
 					.firestore()
 					.collection("users")
 					.doc(userID)
-					.set({
-						uid: userUid,
+					.update({
 						token: accountToken,
 					})
 					.then(() => {
-						console.log(userUid + " has been added");
+						// console.log(userUid + " has been added");
 					});
 			} else {
 				console.log("User not loaded in");

@@ -19,6 +19,7 @@ import URLParse from "url-parse";
 import FitbitWebView from "../FitbitWebView";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { firebase } from "../../firebase/config";
 
 const Dashboard = ({ navigation }) => {
 	const [profileData, setProfileData] = useState([]);
@@ -42,6 +43,16 @@ const Dashboard = ({ navigation }) => {
 				console.error("Error: ", err);
 			});
 	}
+
+	const signOut = () => {
+		firebase
+			.auth()
+			.signOut()
+			.then(() => {
+				console.log("User signed out");
+				navigation.navigate("Login");
+			});
+	};
 
 	return (
 		<SafeAreaView style={{ backgroundColor: "#F2F6F9", padding: 20 }}>
@@ -126,6 +137,12 @@ const Dashboard = ({ navigation }) => {
 					<Text style={{ textAlign: "center" }}>
 						Connect to Fitbit Account
 					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.fitbitConnectBtn}
+					onPress={signOut}
+				>
+					<Text style={{ textAlign: "center" }}>Signout</Text>
 				</TouchableOpacity>
 			</ScrollView>
 			<DashboardMenu />
