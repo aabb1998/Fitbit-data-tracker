@@ -77,23 +77,24 @@ const FitbitWebView = ({ navigation }) => {
 				token: accountToken,
 			});
 		}
-		console.log(firebase.auth().currentUser?.email);
 	};
 
 	useEffect(() => {
 		const userID = userUid;
 		const findUser = async () => {
-			const userCheck = await firebase
-				.firestore()
-				.collection("users")
-				.doc(userID)
-				.onSnapshot((documentSnapshot) => {
-					if (documentSnapshot.data() === undefined) {
-						addUserToDatabase();
-					} else {
-						console.log("User found in the datrabase");
-					}
-				});
+			if (userID) {
+				const userCheck = await firebase
+					.firestore()
+					.collection("users")
+					.doc(userID)
+					.onSnapshot((documentSnapshot) => {
+						if (documentSnapshot.data() === undefined) {
+							addUserToDatabase();
+						} else {
+							console.log("User found in the datrabase");
+						}
+					});
+			}
 		};
 		findUser();
 	}, [userUid]);

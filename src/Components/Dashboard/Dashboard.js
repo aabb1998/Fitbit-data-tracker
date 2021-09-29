@@ -25,12 +25,14 @@ const Dashboard = ({ navigation }) => {
 	const [profileData, setProfileData] = useState([]);
 	const [sleepData, setSleepData] = useState();
 	const [heartData, setHeartData] = useState();
+	const [userInfo, setUserInfo] = useState({});
+	const [userToken, setUserToken] = useState("");
 
-	function getData(access_token) {
+	function getData() {
 		fetch("https://api.fitbit.com/1/user/-/profile.json", {
 			method: "GET",
 			headers: {
-				Authorization: `Bearer ${access_token}`,
+				Authorization: `Bearer ${userToken}`,
 			},
 			// body: `root=auto&path=${Math.random()}`
 		})
@@ -43,6 +45,39 @@ const Dashboard = ({ navigation }) => {
 				console.error("Error: ", err);
 			});
 	}
+
+	const getUserUID = () => {
+		const getID = () => {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					setUserInfo(user);
+				}
+			});
+		};
+		getID();
+	};
+	getUserUID();
+
+	useEffect(() => {
+		if (userInfo.uid) {
+			const findUserToken = async () => {
+				console.log(userInfo.uid);
+				const userDoc = await firebase
+					.firestore()
+					.collection("users")
+					.doc(userInfo.uid)
+					.onSnapshot((documentSnapshot) => {
+						setUserToken(documentSnapshot.data().token);
+					});
+			};
+			findUserToken();
+		}
+	}, [userInfo]);
+
+	useEffect(() => {
+		console.log(userToken);
+		getData();
+	}, [userToken]);
 
 	const signOut = () => {
 		firebase
@@ -62,9 +97,7 @@ const Dashboard = ({ navigation }) => {
 				showsVerticalScrollIndicator={false}
 			>
 				<View style={styles.mainContainer}>
-					<Text style={styles.textHeader}>
-						{profileData && console.log(profileData?.user)}
-					</Text>
+					<Text style={styles.textHeader}></Text>
 					<Text style={styles.textSmall}>
 						Your sleep data is ready to view!
 					</Text>
