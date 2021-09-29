@@ -38,7 +38,7 @@ const Dashboard = ({ navigation }) => {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(`res: ${JSON.stringify(res)}`);
+				// console.log(`res: ${JSON.stringify(res)}`);
 				setProfileData(res);
 			})
 			.catch((err) => {
@@ -75,9 +75,12 @@ const Dashboard = ({ navigation }) => {
 	}, [userInfo]);
 
 	useEffect(() => {
-		console.log(userToken);
 		getData();
 	}, [userToken]);
+
+	useEffect(() => {
+		console.log(profileData?.user?.age);
+	}, [profileData]);
 
 	const signOut = () => {
 		firebase
@@ -109,7 +112,9 @@ const Dashboard = ({ navigation }) => {
 							uri: "https://media-exp1.licdn.com/dms/image/C5603AQFQY_gG-DCSuw/profile-displayphoto-shrink_200_200/0/1599099548476?e=1636588800&v=beta&t=BVdy-GEPdujawBjWCF_vyaED5d9jm8mG8FLu3ahSTBg",
 						}}
 					/>
-					<Text style={styles.userSectionName}>Abdul Abbou</Text>
+					<Text style={styles.userSectionName}>
+						{profileData?.user?.fullName}
+					</Text>
 					<Text style={styles.userSectionName}></Text>
 				</View>
 				<View style={styles.favoritesHeader}>
