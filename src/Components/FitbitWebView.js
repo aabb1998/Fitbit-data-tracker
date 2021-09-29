@@ -24,6 +24,7 @@ const FitbitWebView = ({ navigation }) => {
 	const [accessToken, setAccessToken] = useState();
 	const [accountToken, setAccountToken] = useState("");
 	const [userUid, setUserUid] = useState("");
+	const [user, setUser] = useState({});
 
 	useEffect(() => {
 		var regex = /[#?&]([^=#]+)=([^&#]*)/g,
@@ -39,7 +40,7 @@ const FitbitWebView = ({ navigation }) => {
 	}, [accessToken]);
 
 	useEffect(() => {
-		console.log(accountToken);
+		// console.log(accountToken);
 		// getData(accountToken);
 	}, [accountToken]);
 
@@ -52,6 +53,7 @@ const FitbitWebView = ({ navigation }) => {
 			firebase.auth().onAuthStateChanged((user) => {
 				if (user) {
 					setUserUid(user.uid);
+					setUser(user);
 				}
 			});
 		};
@@ -66,36 +68,34 @@ const FitbitWebView = ({ navigation }) => {
 		getUserId();
 	}, []);
 
+	const addUserToDatabase = () => {
+		console.log("Adding user to database");
+		if (accountToken) {
+			firebase.firestore().collection("users").doc(userUid).set({
+				email: user.email,
+				id: userUid,
+				token: accountToken,
+			});
+		}
+		console.log(firebase.auth().currentUser?.email);
+	};
+
 	useEffect(() => {
 		const userID = userUid;
-		const addUser = () => {
-			// firebase
-			// 	.firestore()
-			// 	.collection("users")
-			// 	.add({
-			// 		uid: userUid,
-			// 		token: accountToken,
-			// 	})
-			// 	.then(() => {
-			// 		console.log(userUid + " has been added");
-			// 	});
-			if (userUid && accountToken) {
-				firebase
-					.firestore()
-					.collection("users")
-					.doc(userID)
-					.update({
-						token: accountToken,
-					})
-					.then(() => {
-						// console.log(userUid + " has been added");
-					});
-			} else {
-				console.log("User not loaded in");
-			}
+		const findUser = async () => {
+			const userCheck = await firebase
+				.firestore()
+				.collection("users")
+				.doc(userID)
+				.onSnapshot((documentSnapshot) => {
+					if (documentSnapshot.data() === undefined) {
+						addUserToDatabase();
+					} else {
+						console.log("User found in the datrabase");
+					}
+				});
 		};
-		addUser();
-		console.log(userUid);
+		findUser();
 	}, [userUid]);
 
 	return (
