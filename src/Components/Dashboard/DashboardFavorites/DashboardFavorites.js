@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		marginTop: 20,
+		zIndex: 0,
 	},
 	sleepSection: {
 		display: "flex",
@@ -54,14 +55,6 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		height: 130,
 		padding: 8,
-		shadowColor: "gray",
-		shadowOffset: {
-			width: 0,
-			height: 4,
-		},
-		shadowOpacity: 1,
-		shadowRadius: 2,
-		elevation: 10,
 	},
 	favoritesInner: {
 		display: "flex",
