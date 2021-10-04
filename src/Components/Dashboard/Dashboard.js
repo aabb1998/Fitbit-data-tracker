@@ -46,9 +46,37 @@ const Dashboard = ({ navigation }) => {
 			});
 	}
 
+	const generateDay = () => {
+		var max = Math.floor(27);
+		var min = Math.ceil(1);
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	};
+
+	const generateMonth = () => {
+		var max = Math.floor(1);
+		var min = Math.ceil(9);
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	};
+
+	const generateTime = () => {
+		var max = Math.floor(20000000);
+		var min = Math.ceil(29000000);
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	};
+
+	const generateStartTime = () => {
+		var max = Math.floor(1);
+		var min = Math.ceil(3);
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	};
+
 	const pushSleep = () => {
+		const randomDate = generateDay();
+		const randomMonth = generateMonth();
+		const randomTime = generateTime();
+		const randomStart = generateStartTime();
 		fetch(
-			"https://api.fitbit.com/1.2/user/-/sleep.json?date=2021-03-27&startTime=02:32&duration=7200000",
+			`https://api.fitbit.com/1.2/user/-/sleep.json?date=2021-${randomMonth}-${randomDate}&startTime=0${randomStart}:10&duration=${randomTime}`,
 			{
 				method: "POST",
 				headers: {
@@ -66,9 +94,9 @@ const Dashboard = ({ navigation }) => {
 			});
 	};
 
-	useEffect(() => {
-		pushSleep();
-	}, [profileData]);
+	// useEffect(() => {
+	// 	pushSleep();
+	// }, [profileData]);
 
 	const getUserUID = () => {
 		const getID = () => {
@@ -99,7 +127,7 @@ const Dashboard = ({ navigation }) => {
 	}, [userInfo]);
 
 	useEffect(() => {
-		getData();
+		// getData();
 		console.log(userToken);
 	}, [userToken]);
 

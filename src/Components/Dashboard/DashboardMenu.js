@@ -6,15 +6,39 @@ import bedwhite from "../../Assets/Dashboard/bed-white.png";
 import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
 import journal from "../../Assets/Dashboard/journal.png";
 import activity from "../../Assets/Dashboard/activity.png";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
+
+import { StackNavigator } from "react-navigation";
+
+import Sleep from "../SleepPage/Sleep";
 
 const DashboardMenu = () => {
+	const navigation = useNavigation();
+
 	return (
 		<View>
 			<View style={styles.floatingMenu}>
-				<Image style={styles.floatingMenuImage} source={bedwhite} />
-				<Image style={styles.floatingMenuImage} source={journal} />
-				<Image style={styles.floatingMenuImage} source={heartWhite} />
-				<Image style={styles.floatingMenuImage3} source={activity} />
+				<TouchableOpacity>
+					<Image style={styles.floatingMenuImage} source={journal} />
+				</TouchableOpacity>
+				<TouchableOpacity>
+					<Image
+						style={styles.floatingMenuImage}
+						source={heartWhite}
+					/>
+				</TouchableOpacity>
+				<TouchableOpacity>
+					<Image
+						style={styles.floatingMenuImage3}
+						source={activity}
+					/>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate("Sleep")}>
+					<Image style={styles.floatingMenuImage} source={bedwhite} />
+				</TouchableOpacity>
 			</View>
 		</View>
 	);
