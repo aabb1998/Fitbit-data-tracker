@@ -25,6 +25,7 @@ const FitbitWebView = ({ navigation }) => {
 	const [accountToken, setAccountToken] = useState("");
 	const [userUid, setUserUid] = useState("");
 	const [user, setUser] = useState({});
+	const [tokenAdded, setTokenAdded] = useState(false);
 
 	useEffect(() => {
 		var regex = /[#?&]([^=#]+)=([^&#]*)/g,
@@ -36,13 +37,14 @@ const FitbitWebView = ({ navigation }) => {
 		// console.log(params.access_token);
 		if (params.access_token) {
 			setAccountToken(params.access_token);
+			// console.log(params.access_token);
 		}
 	}, [accessToken]);
 
-	useEffect(() => {
-		// console.log(accountToken);
-		// getData(accountToken);
-	}, [accountToken]);
+	// useEffect(() => {
+	// 	// console.log(accountToken);
+	// 	// getData(accountToken);
+	// }, [accountToken]);
 
 	const onNavigationStateChange = (navigationState) => {
 		const url = navigationState.url;
@@ -79,6 +81,24 @@ const FitbitWebView = ({ navigation }) => {
 		}
 	};
 
+	const addTokenToUser = (userID) => {
+		console.log("Adding token to current user");
+		console.log(accountToken);
+		if (accountToken && !tokenAdded) {
+			firebase
+				.firestore()
+				.collection("users")
+				.doc(userID)
+				.update({
+					token: accountToken,
+				})
+				.then(() => {
+					console.log("User token updated");
+					setTokenAdded(!tokenAdded);
+				});
+		}
+	};
+
 	useEffect(() => {
 		const userID = userUid;
 		const findUser = async () => {
@@ -91,13 +111,18 @@ const FitbitWebView = ({ navigation }) => {
 						if (documentSnapshot.data() === undefined) {
 							addUserToDatabase();
 						} else {
-							console.log("User found in the datrabase");
+							// console.log("User found in the datrabase");
+							if (!tokenAdded) {
+								addTokenToUser(userID);
+							} else {
+								console.log("Token has already been added.");
+							}
 						}
 					});
 			}
 		};
 		findUser();
-	}, [userUid]);
+	}, [accountToken]);
 
 	return (
 		<WebView
@@ -115,9 +140,9 @@ const FitbitWebView = ({ navigation }) => {
 				const { nativeEvent } = syntheticEvent;
 				// console.log("WebView error: ", nativeEvent);
 				// console.log(nativeEvent.url);
-				if (!accessToken) {
-					setAccessToken(nativeEvent.url);
-				}
+				// if (!accessToken) {
+				setAccessToken(nativeEvent.url);
+				// }
 			}}
 			onMessage={(event) => Alert.alert("Test")}
 			renderError={() => {

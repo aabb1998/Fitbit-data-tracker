@@ -38,13 +38,37 @@ const Dashboard = ({ navigation }) => {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				// console.log(`res: ${JSON.stringify(res)}`);
+				console.log(`res: ${JSON.stringify(res)}`);
 				setProfileData(res);
 			})
 			.catch((err) => {
 				console.error("Error: ", err);
 			});
 	}
+
+	const pushSleep = () => {
+		fetch(
+			"https://api.fitbit.com/1.2/user/-/sleep.json?date=2021-03-27&startTime=02:32&duration=7200000",
+			{
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${userToken}`,
+				},
+				// body: `root=auto&path=${Math.random()}`
+			}
+		)
+			.then((res) => res.json())
+			.then((res) => {
+				console.log(`res: ${JSON.stringify(res)}`);
+			})
+			.catch((err) => {
+				console.error("Error: ", err);
+			});
+	};
+
+	useEffect(() => {
+		pushSleep();
+	}, [profileData]);
 
 	const getUserUID = () => {
 		const getID = () => {
@@ -76,6 +100,7 @@ const Dashboard = ({ navigation }) => {
 
 	useEffect(() => {
 		getData();
+		console.log(userToken);
 	}, [userToken]);
 
 	useEffect(() => {
