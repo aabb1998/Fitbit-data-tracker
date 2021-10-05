@@ -5,10 +5,14 @@ import styles from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
 import { firebase } from "../../firebase/config";
 
-export default function NotificationScreen({ navigation }) {
 
-    const onNotificationsPress = () => {
-		navigation.navigate("Notifications");
-	};
+const NotificationScreen = () => {
+	return (
+		<SafeAreaView style={{ backgroundColor: "#F2F6F9", padding: 20 }}>
+			<View style={styles.container}>
+				<Text style={styles.title}>Notificatons</Text>
+			</View>
+		</SafeAreaView>
+	)
 
 }

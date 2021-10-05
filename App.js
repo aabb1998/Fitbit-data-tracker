@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
 import React, { useEffect, useState } from "react";
 import { Text, StyleSheet } from "react-native";
-import { HomeScreen } from "./Index";
+import { HomeScreen, NotificationScreen } from "./Index";
 import { LoginScreen } from "./Index";
 import { RegistrationScreen } from "./Index";
 import { NavigationContainer } from "@react-navigation/native";
@@ -45,6 +45,11 @@ export default function App() {
 							options={{ headerLeft: false }}
 							component={Dashboard}
 						/>
+						{/*<Stack.Screen
+							name="Notifications"
+							options={{ headerLeft: false }}
+							component={NotificationScreen}
+						/>*/}
 					</>
 				)}
 				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}

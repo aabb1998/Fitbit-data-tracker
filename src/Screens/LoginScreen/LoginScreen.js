@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }) {
 			return;
 		} else {
 			firebase
-				.auth()
+				.auth() 
 				.signInWithEmailAndPassword(email, password)
 				.then((response) => {
 					//navigation.navigate("Home",{email:email,id:documentSnapshot.data()});

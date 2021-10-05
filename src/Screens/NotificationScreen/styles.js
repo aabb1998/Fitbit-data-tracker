@@ -2,10 +2,17 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
 	container: {
-		flex: 1,
-		alignItems: "center",
+		marginTop: 20,
+		display: "flex",
+		flexDirection: "column",
+		alignContent: "center",
+		textAlign: "left",
 	},
-	title: {},
+	title: {
+		fontSize: 30,
+		fontFamily: "sans-serif",
+		fontWeight: "bold",
+	},
 	logo: {
 		flex: 1,
 		height: 300,
