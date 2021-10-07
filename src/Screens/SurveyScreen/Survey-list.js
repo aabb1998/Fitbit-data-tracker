@@ -3,24 +3,24 @@ import { SectionList, StyleSheet, TouchableOpacity, Text, View } from 'react-nat
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
-   paddingTop: 22
+    flex: 1,
+    paddingTop: 22
   },
   sectionHeader: {
     paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
+    marginLeft:20,
     paddingBottom: 2,
     fontSize: 30,
     fontWeight: 'bold',
-    backgroundColor: 'rgba(247,247,247,1.0)',
-    marginBottom: 20,
-    marginTop: 20,
+    marginBottom: 2,
+    marginTop: 2,
   },
   item: {
     padding: 10,
     fontSize: 18,
     height: 44,
+    marginLeft:20,
+    marginRight:20,
     backgroundColor: '#68a0cf',
     borderWidth: 1,
     height: 100,
@@ -33,26 +33,25 @@ const styles = StyleSheet.create({
 })
 
 const SurveyList = () => {
-    return (
-      <View style={styles.container}>
+  return (
+    <View style={styles.container}>
 
-        <SectionList
+      <SectionList
+        sections={[
+          {
+            title: 'Daily Survey',
+            data: ['Karolinska Sleepiness Scale', 'Visual Analog Scale (VAS)']
+          },
 
+        ]}
+        renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+        renderSectionHeader={({ section }) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+        keyExtractor={(item, index) => index}
 
-          sections={[
-            {title: 'Daily Survey',
+      />
 
-            data: ['Karolinska Sleepiness Scale', 'Visual Analog Scale (VAS)']},
-
-          ]}
-          renderItem={({item}) => <TouchableOpacity> <Text style={styles.item}>{item}</Text>  </TouchableOpacity>}
-          renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-          keyExtractor={(item, index) => index}
-
-        />
-
-      </View>
-    );
+    </View>
+  );
 }
 
 export default SurveyList;
