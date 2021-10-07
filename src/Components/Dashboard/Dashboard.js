@@ -38,7 +38,7 @@ const Dashboard = ({ navigation }) => {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(`res: ${JSON.stringify(res)}`);
+				// console.log(`res: ${JSON.stringify(res)}`);
 				setProfileData(res);
 			})
 			.catch((err) => {
@@ -59,7 +59,7 @@ const Dashboard = ({ navigation }) => {
 	};
 
 	const generateTime = () => {
-		var max = Math.floor(20000000);
+		var max = Math.floor(18000000);
 		var min = Math.ceil(29000000);
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	};
@@ -113,7 +113,7 @@ const Dashboard = ({ navigation }) => {
 	useEffect(() => {
 		if (userInfo.uid) {
 			const findUserToken = async () => {
-				console.log(userInfo.uid);
+				// console.log(userInfo.uid);
 				const userDoc = await firebase
 					.firestore()
 					.collection("users")
@@ -127,12 +127,12 @@ const Dashboard = ({ navigation }) => {
 	}, [userInfo]);
 
 	useEffect(() => {
-		// getData();
-		console.log(userToken);
+		getData();
+		// console.log(userToken);
 	}, [userToken]);
 
 	useEffect(() => {
-		console.log(profileData?.user?.age);
+		// console.log(profileData);
 	}, [profileData]);
 
 	const signOut = () => {
@@ -140,7 +140,7 @@ const Dashboard = ({ navigation }) => {
 			.auth()
 			.signOut()
 			.then(() => {
-				console.log("User signed out");
+				// console.log("User signed out");
 				navigation.navigate("Login");
 			});
 	};
