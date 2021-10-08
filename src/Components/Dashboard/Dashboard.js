@@ -53,8 +53,8 @@ const Dashboard = ({ navigation }) => {
 	};
 
 	const generateMonth = () => {
-		var max = Math.floor(1);
-		var min = Math.ceil(9);
+		var max = Math.floor(8);
+		var min = Math.ceil(10);
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	};
 

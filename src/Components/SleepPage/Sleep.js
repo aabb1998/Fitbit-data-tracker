@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	SafeAreaView,
+	ScrollView,
+	StatusBar,
+	FlatList,
+	View,
+} from "react-native";
 import DashboardFavorites from "../Dashboard/DashboardFavorites/DashboardFavorites";
 import DashboardMenu from "../Dashboard/DashboardMenu";
 import { firebase } from "../../firebase/config";
+import SleepData from "./SleepData/SleepData";
 
 const Sleep = ({ navigation }) => {
 	const [userId, setUserId] = useState("");
 	const [userToken, setUserToken] = useState("");
-	const [userSleepData, setUserSleepData] = useState({});
+	const [userSleepData, setUserSleepData] = useState([]);
 
 	const getUserID = () => {
 		const getID = () => {
@@ -63,7 +72,13 @@ const Sleep = ({ navigation }) => {
 	}, []);
 
 	useEffect(() => {
-		console.log(userSleepData);
+		// console.log(
+		// 	userSleepData?.sleep?.map((sleep) => ({
+		// 		date: sleep.dateOfSleep,
+		// 		duration: sleep.duration,
+		// 		efficiency: sleep.efficiency,
+		// 	}))
+		// );
 	}, [userSleepData]);
 
 	useEffect(() => {
@@ -77,12 +92,29 @@ const Sleep = ({ navigation }) => {
 	}, [userId]);
 
 	return (
-		<View>
-			<Text>Sleep Page</Text>
-		</View>
+		<SafeAreaView style={styles.container}>
+			<View>
+				{userSleepData &&
+					userSleepData?.sleep?.map((sleep) => (
+						<SleepData
+							date={sleep.dateOfSleep}
+							duration={sleep.duration}
+							efficiency={sleep.efficiency}
+						/>
+					))}
+			</View>
+		</SafeAreaView>
 	);
 };
 
 export default Sleep;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		marginTop: 40,
+		display: "flex",
+		flexDirection: "column",
+		alignContent: "center",
+		textAlign: "left",
+	},
+});
