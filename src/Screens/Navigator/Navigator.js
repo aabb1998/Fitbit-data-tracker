@@ -5,10 +5,10 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Survey 1" component={Survey1} />
+      <Stack.Screen name="Survey 2" component={Survey2} />
+      <Stack.Screen name="Survey 3" component={Survey3} />
+      <Stack.Screen name="Survey 4" component={Survey4} />
     </Stack.Navigator>
   );
 }
