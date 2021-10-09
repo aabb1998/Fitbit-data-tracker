@@ -22,6 +22,13 @@ const SleepData = ({ date, duration, efficiency }) => {
 				<Text>{durationConvert()}</Text>
 				<Text>{efficiency}</Text>
 			</View>
+			<View>
+				<Progress.Bar
+					progress={duration / 26800000}
+					width={200}
+					color={duration / 26800000 > 1 ? "green" : "red"}
+				/>
+			</View>
 		</View>
 	);
 };
