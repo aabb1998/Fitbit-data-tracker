@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Progress from "react-native-progress";
+import formatDuration from "format-duration";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
+
+import { StackNavigator } from "react-navigation";
 
 const SleepData = ({ date, duration, efficiency }) => {
-	const durationConvert = () => {
-		let totalSeconds = Number(durationConvert);
-		let hours = totalSeconds;
-
-		return hours;
-	};
+	const [durationMin, setDurationMin] = useState(0);
+	const durationConvert = () => {};
+	const navigation = useNavigation();
 
 	return (
 		<View style={styles.sleepDayInfo}>
@@ -19,7 +22,7 @@ const SleepData = ({ date, duration, efficiency }) => {
 				<Text>{date}</Text>
 			</View>
 			<View style={styles.sleepDayHeader}>
-				<Text>{durationConvert()}</Text>
+				<Text>{formatDuration(duration)}</Text>
 				<Text>{efficiency}</Text>
 			</View>
 			<View>

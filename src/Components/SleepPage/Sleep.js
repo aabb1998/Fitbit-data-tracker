@@ -10,11 +10,15 @@ import {
 	Image,
 	TouchableHighlight,
 } from "react-native";
-import DashboardFavorites from "../Dashboard/DashboardFavorites/DashboardFavorites";
-import DashboardMenu from "../Dashboard/DashboardMenu";
 import { firebase } from "../../firebase/config";
 import SleepData from "./SleepData/SleepData";
 import backArrow from "../../Assets/Dashboard/backArrow.png";
+import * as Progress from "react-native-progress";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
+
+import { StackNavigator } from "react-navigation";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Sleep = ({ navigation }) => {
@@ -96,17 +100,36 @@ const Sleep = ({ navigation }) => {
 		getUserToken();
 	}, [userId]);
 
+	const stringReturn = () => {
+		return "Hello";
+	};
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.topContainer}>
 				<View style={styles.textHeader}>
-					<TouchableOpacity>
+					<TouchableOpacity
+						onPress={() => navigation.navigate("Dashboard")}
+					>
 						<Image style={styles.imagestyle} source={backArrow} />
 					</TouchableOpacity>
 					<Text style={styles.textHeaderText}>Sleep Data</Text>
 				</View>
-				<View>
-					<Text>Score</Text>
+				<View style={styles.progressBar}>
+					<Text style={{ color: "white" }}>Current Rating</Text>
+					<Progress.Circle
+						size={120}
+						indeterminate={true}
+						indeterminateAnimationDuration={20000}
+						progress={0.8}
+						borderWidth={5}
+						unfilledColor="white"
+						showsText={true}
+						formatText={stringReturn}
+					/>
+				</View>
+				<View style={styles.progressInnerText}>
+					<Text style={{ fontSize: 40, color: "white" }}>75</Text>
 				</View>
 			</View>
 
@@ -145,7 +168,7 @@ const styles = StyleSheet.create({
 	textHeaderText: {
 		fontSize: 20,
 		fontFamily: "sans-serif",
-		marginLeft: 130,
+		marginLeft: 126,
 		color: "white",
 		marginTop: 10,
 	},
@@ -166,5 +189,18 @@ const styles = StyleSheet.create({
 		marginBottom: 60,
 		position: "relative",
 		top: -40,
+	},
+	progressBar: {
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		alignItems: "center",
+		marginTop: 50,
+	},
+	progressInnerText: {
+		position: "absolute",
+		fontSize: 20,
+		top: 135,
+		left: 180,
 	},
 });
