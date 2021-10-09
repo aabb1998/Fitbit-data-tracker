@@ -7,11 +7,15 @@ import {
 	StatusBar,
 	FlatList,
 	View,
+	Image,
+	TouchableHighlight,
 } from "react-native";
 import DashboardFavorites from "../Dashboard/DashboardFavorites/DashboardFavorites";
 import DashboardMenu from "../Dashboard/DashboardMenu";
 import { firebase } from "../../firebase/config";
 import SleepData from "./SleepData/SleepData";
+import backArrow from "../../Assets/Dashboard/backArrow.png";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Sleep = ({ navigation }) => {
 	const [userId, setUserId] = useState("");
@@ -79,6 +83,7 @@ const Sleep = ({ navigation }) => {
 		// 		efficiency: sleep.efficiency,
 		// 	}))
 		// );
+		// console.log(userSleepData?.sleep);
 	}, [userSleepData]);
 
 	useEffect(() => {
@@ -93,16 +98,29 @@ const Sleep = ({ navigation }) => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<View>
+			<View style={styles.topContainer}>
+				<View style={styles.textHeader}>
+					<TouchableOpacity>
+						<Image style={styles.imagestyle} source={backArrow} />
+					</TouchableOpacity>
+					<Text style={styles.textHeaderText}>Sleep Data</Text>
+				</View>
+				<View>
+					<Text>Score</Text>
+				</View>
+			</View>
+
+			<ScrollView style={styles.sleepDataScroll}>
 				{userSleepData &&
 					userSleepData?.sleep?.map((sleep) => (
 						<SleepData
+							key={sleep.logId}
 							date={sleep.dateOfSleep}
 							duration={sleep.duration}
 							efficiency={sleep.efficiency}
 						/>
 					))}
-			</View>
+			</ScrollView>
 		</SafeAreaView>
 	);
 };
@@ -114,7 +132,39 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		display: "flex",
 		flexDirection: "column",
-		alignContent: "center",
 		textAlign: "left",
+	},
+	textHeader: {
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "flex-start",
+		fontSize: 30,
+		fontFamily: "sans-serif",
+		fontWeight: "bold",
+	},
+	textHeaderText: {
+		fontSize: 20,
+		fontFamily: "sans-serif",
+		marginLeft: 130,
+		color: "white",
+		marginTop: 10,
+	},
+	imagestyle: {
+		position: "relative",
+		width: 20,
+		height: 20,
+		marginLeft: 10,
+		marginTop: 10,
+	},
+	topContainer: {
+		backgroundColor: "#342F69",
+		height: 300,
+		borderBottomEndRadius: 20,
+		borderBottomStartRadius: 20,
+	},
+	sleepDataScroll: {
+		marginBottom: 60,
+		position: "relative",
+		top: -40,
 	},
 });
