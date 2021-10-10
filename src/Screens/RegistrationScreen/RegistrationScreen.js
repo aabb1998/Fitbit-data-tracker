@@ -32,16 +32,15 @@ export default function RegistrationScreen({ navigation }) {
 				};
 				console.log(uid);
 
-				
-
-				firebase
-				.firestore()
-				.collection("users")
-				.doc(uid)
-				.set({
-					id: uid,
-					email:email ,
-					fullName:fullName,
+                firebase.createUser(data);
+				//firebase
+				//.firestore()
+				//.collection("users")
+				//.doc(uid)
+				//.set({
+					//id: uid,
+					//email:email ,
+					//fullName:fullName,
 				})
 				.then(() => {
 					//navigation.navigate("Home",{email:email,id:uid});

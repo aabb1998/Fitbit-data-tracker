@@ -12,7 +12,27 @@ const firebaseConfig = {
 };
 
 if (!firebase.apps.length) {
-	firebase.initializeApp(firebaseConfig);
+	const app = firebase.initializeApp(firebaseConfig);
+}
+
+const db = getFirestore(app);
+
+async function getUsers(data, db) {
+    collection("users").doc(uid);
+    return userList;
+}
+
+async function createUser(data, db) {
+    firebase.firestore().collection("users").doc(uid).set({id:data.uid, email:data.email, fullName:data.fullName,})
+}
+
+async function createSleepRecord(data, db) {
+    firebase.firestore().collection("sleepData").doc().set({})
+}
+
+async function getSleepRecord(data, db) {
+    collection(sleepData).doc(uid);
+    return sleepDataList;
 }
 
 export { firebase };
