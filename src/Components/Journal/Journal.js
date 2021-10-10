@@ -1,123 +1,136 @@
 import React, { useState } from "react";
-import { Image, View, StyleSheet, Text, SafeAreaView } from "react-native";
+import { Image, View, StyleSheet, Text, SafeAreaView,TouchableOpacity } from "react-native";
 import DashboardMenu from "../Dashboard/DashboardMenu";
 import journalIcon from "../../Assets/Journal/column.png";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { LineChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
+import bedwhite from "../../Assets/Dashboard/bed-white.png";
+import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
+import journal from "../../Assets/Dashboard/journal_white.png";
+import activity from "../../Assets/Dashboard/activity.png";
 
-const Journal = () => {
-  const [chartWidth, setChartWidth] = useState(0);
-  const [activeSection, setActiveSection] = useState(0);
-  const [sections, setSections] = useState([
-    {
-      name: "Distance(km)",
-    },
-    { name: "Steps" },
-  ]);
+export default function Journal ({ navigation }) {
+    const [chartWidth, setChartWidth] = useState(0);
+    const [activeSection, setActiveSection] = useState(0);
+    const [sections, setSections] = useState([
+      {
+        name: "Distance(km)",
+      },
+      { name: "Steps" },
+    ]);
 
-  const getChartParentSize = (event) => {
-    const { width, height } = event.nativeEvent.layout;
+    const onActivityPress = () => {
+          navigation.navigate("Dashboard");
+        };
 
-    setChartWidth((_) => width);
-  };
+    const getChartParentSize = (event) => {
+      const { width, height } = event.nativeEvent.layout;
 
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <View style={styles.mainContainer}>
-        <Text style={styles.textHeader}>Summary</Text>
-        <View style={{ flexDirection: "row" }}>
-          <Text style={styles.textSmall}>How is your work out</Text>
-          <Image style={styles.journalIconSource} source={journalIcon} />
-        </View>
+      setChartWidth((_) => width);
+    };
 
-        <View style={styles.cards}>
-          <View style={styles.card}>
-            <Text style={styles.cardSmallText1}>In</Text>
-            <Text style={styles.cardLargeText}>1913</Text>
-            <Text style={styles.cardSmallText2}>Calories</Text>
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+        <View style={styles.mainContainer}>
+          <Text style={styles.textHeader}>Summary</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.textSmall}>How is your work out</Text>
+            <Image style={styles.journalIconSource} source={journalIcon} />
           </View>
 
-          <View style={styles.card}>
-            <Text style={styles.cardSmallText1}>Out</Text>
-            <Text style={styles.cardLargeText}>2143</Text>
-            <Text style={styles.cardSmallText2}>Calories</Text>
-          </View>
-        </View>
+          <View style={styles.cards}>
+            <View style={styles.card}>
+              <Text style={styles.cardSmallText1}>In</Text>
+              <Text style={styles.cardLargeText}>1913</Text>
+              <Text style={styles.cardSmallText2}>Calories</Text>
+            </View>
 
-        <View style={styles.graphCard}>
-          <Text style={styles.graphCardTitle}>Activity</Text>
-          <View style={styles.graphCardList}>
-            {sections.map((e, i) => (
-              <Text
-                key={i}
-                onPress={(_) => setActiveSection((_) => i)}
-                style={[
-                  styles.graphCardListItem,
-                  activeSection === i ? styles.graphCardListItemActive : {},
-                ]}
-              >
-                {e.name}
-              </Text>
-            ))}
+            <View style={styles.card}>
+              <Text style={styles.cardSmallText1}>Out</Text>
+              <Text style={styles.cardLargeText}>2143</Text>
+              <Text style={styles.cardSmallText2}>Calories</Text>
+            </View>
           </View>
 
-          <View onLayout={getChartParentSize} style={styles.chart}>
-            <LineChart
-              data={{
-                labels: [
-                  "very",
-                  "light",
-                  "moderate",
-                  "lightly",
-                  "sedentary",
-                  "treadmail",
-                ],
-                datasets: [
-                  {
-                    data: [30, 15, 45, 26, 60, 30],
+          <View style={styles.graphCard}>
+            <Text style={styles.graphCardTitle}>Activity</Text>
+            <View style={styles.graphCardList}>
+              {sections.map((e, i) => (
+                <Text
+                  key={i}
+                  onPress={(_) => setActiveSection((_) => i)}
+                  style={[
+                    styles.graphCardListItem,
+                    activeSection === i ? styles.graphCardListItemActive : {},
+                  ]}
+                >
+                  {e.name}
+                </Text>
+              ))}
+            </View>
+
+            <View onLayout={getChartParentSize} style={styles.chart}>
+              <LineChart
+                data={{
+                  labels: [
+                    "very",
+                    "light",
+                    "moderate",
+                    "lightly",
+                    "sedentary",
+                    "treadmail",
+                  ],
+                  datasets: [
+                    {
+                      data: [30, 15, 45, 26, 60, 30],
+                    },
+                  ],
+                }}
+                width={chartWidth + 50}
+                height={180}
+                chartConfig={{
+                  backgroundColor: "#ffffff00",
+                  backgroundGradientFrom: "#ffffff00",
+                  backgroundGradientTo: "#ffffff00",
+                  backgroundGradientFromOpacity: 0,
+                  backgroundGradientToOpacity: 0,
+                  decimalPlaces: 0, // optional, defaults to 2dp
+                  color: (opacity = 1) => `rgba(105,121,248, ${opacity})`,
+                  labelColor: (opacity = 1) => `rgba(105,121,248, ${opacity})`,
+                  propsForDots: {
+                    r: 3,
+                    strokeWidth: 2,
+                    stroke: "#6979f8",
                   },
-                ],
-              }}
-              width={chartWidth + 50}
-              height={180}
-              chartConfig={{
-                backgroundColor: "#ffffff00",
-                backgroundGradientFrom: "#ffffff00",
-                backgroundGradientTo: "#ffffff00",
-                backgroundGradientFromOpacity: 0,
-                backgroundGradientToOpacity: 0,
-                decimalPlaces: 0, // optional, defaults to 2dp
-                color: (opacity = 1) => `rgba(105,121,248, ${opacity})`,
-                labelColor: (opacity = 1) => `rgba(105,121,248, ${opacity})`,
-                propsForDots: {
-                  r: 3,
-                  strokeWidth: 2,
-                  stroke: "#6979f8",
-                },
-                propsForBackgroundLines: {
-                  backgroundColor: "red",
-                },
-              }}
-              bezier
-              style={{
-                padding: 0,
-                margin: 0,
-                // overflow: "hidden",
-              }}
-            />
+                  propsForBackgroundLines: {
+                    backgroundColor: "red",
+                  },
+                }}
+                bezier
+                style={{
+                  padding: 0,
+                  margin: 0,
+                  // overflow: "hidden",
+                }}
+              />
+            </View>
+          </View>
+
+          <View style={styles.bottomContainer}>
+            <View style={styles.floatingMenu}>
+              <Image style={styles.button} source={bedwhite} />
+              <Image style={styles.button3} source={journal} />
+              <Image style={styles.button} source={heartWhite} />
+              <TouchableOpacity onPress={() => onActivityPress()}>
+                <Image style={styles.button} source={activity} />
+              </TouchableOpacity> 
+            </View>
           </View>
         </View>
-
-        <View style={styles.bottomContainer}>
-          <DashboardMenu />
-        </View>
-      </View>
-    </SafeAreaView>
-  );
-};
-
-export default Journal;
+      </SafeAreaView>
+    );
+}
 
 const styles = StyleSheet.create({
   textHeader: {
@@ -254,5 +267,27 @@ const styles = StyleSheet.create({
     marginLeft: -35,
     marginTop: 20,
     backgroundColor: "#ffffff00",
+  },
+
+  //orginal functionalities of DashboardMenu
+  floatingMenu: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "#2D14C4",
+    padding: 20,
+    borderRadius: 30,
+    color: "white",
+  },
+  button: {
+    width: 20,
+    height: 20,
+    opacity: 0.4,
+  },
+  button3: {
+    width: 20,
+    height: 20,
+    opacity: 1,
   },
 });

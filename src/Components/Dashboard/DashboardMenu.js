@@ -1,22 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import bed from "../../Assets/Dashboard/bed.png";
 import bedwhite from "../../Assets/Dashboard/bed-white.png";
 import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
 import journal from "../../Assets/Dashboard/journal_white.png";
 import activity from "../../Assets/Dashboard/activity.png";
 
-const onJournalPress = () => {
-  navigation.navigate("Journal");
-};
-
 const DashboardMenu = () => {
   return (
     <View style={styles.floatingMenu}>
-      <Image style={styles.floatingMenuImage} source={bedwhite} />
-      <Image style={styles.floatingMenuImage3} source={journal} />
-      <Image style={styles.floatingMenuImage} source={heartWhite} />
-      <Image style={styles.floatingMenuImage} source={activity} />
+        <Image style={styles.button} source={bedwhite} />
+        <Image style={styles.button3} source={journal} />
+        <Image style={styles.button} source={heartWhite} />
+        <Image style={styles.button} source={activity} />
     </View>
   );
 };
@@ -34,12 +30,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     color: "white",
   },
-  floatingMenuImage: {
+  button: {
     width: 20,
     height: 20,
     opacity: 0.4,
   },
-  floatingMenuImage3: {
+  button3: {
     width: 20,
     height: 20,
     opacity: 1,
