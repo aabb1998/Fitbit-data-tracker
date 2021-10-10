@@ -45,17 +45,17 @@ const Dashboard = () => {
 						borderRadius: 20,
 					}}
 				>
-					EDIT
+					<Text>Edit</Text>
 				</TouchableOpacity>
 			</View>
 			<View style={styles.fatigueSection}>
 				<View style={styles.fatigueSectionHeader}>
-					<Text style={{ fontSize: 15, fontWeight: "bold" }}>
+					<Text style={{ fontSize: 15, fontWeight: "800" }}>
 						Overall Fatigue
 					</Text>
 				</View>
 				<View style={styles.fatigueSectionData}>
-					<Text style={{ fontSize: 35, fontWeight: "bolder" }}>
+					<Text style={{ fontSize: 35, fontWeight: "900" }}>
 						5<Text style={{ fontSize: 18 }}>th</Text>
 					</Text>
 					<Image
