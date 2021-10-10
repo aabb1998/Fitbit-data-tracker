@@ -7,6 +7,7 @@ import { RegistrationScreen } from "./Index";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
+import PVTScreen from "./src/Screens/PVTScreen/PVTScreen";
 
 // import { decode, encode } from "base-64";
 // if (!global.btoa) {
@@ -23,7 +24,7 @@ export default function App() {
 	const [user, setUser] = useState(null);
 
 	return (
-		<NavigationContainer>
+		/*<NavigationContainer>
 			<Stack.Navigator screenOptions={{ headerShown: false }}>
 				{user ? (
 					<Stack.Screen name="Home">
@@ -47,8 +48,9 @@ export default function App() {
 						/>
 					</>
 				)}
-				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
+				//{ <Stack.Screen name="Dashboard" component={Dashboard} /> }
 			</Stack.Navigator>
-		</NavigationContainer>
+		</NavigationContainer>*/
+		<PVTScreen></PVTScreen>
 	);
 }
