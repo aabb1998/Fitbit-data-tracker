@@ -10,7 +10,12 @@ import {
 import DashboardFavorites from "./DashboardFavorites/DashboardFavorites";
 import DashboardMenu from "./DashboardMenu";
 
-const Dashboard = () => {
+export default function Dashboard({ navigation }) {
+	const onNotificationPress = () => {
+		navigation.navigate("Notification");
+
+	};
+
 	return (
 		<SafeAreaView style={{ backgroundColor: "#F2F6F9", padding: 20 }}>
 			<View style={styles.mainContainer}>
@@ -33,8 +38,10 @@ const Dashboard = () => {
 					Favorites
 				</Text>
 				<TouchableOpacity
+					onPress={() => onNotificationPress()}
+
 					style={{
-						backgroundColor: "#2D14C4",
+						backgroundColor: "#b793cf",
 						padding: 8,
 						paddingLeft: 8,
 						paddingRight: 8,
@@ -58,7 +65,8 @@ const Dashboard = () => {
 						fontWeight: 800,
 						fontFamily: "sans-serif",
 						borderRadius: 20,
-					}}>
+					}}
+				>
 					<Text>Edit</Text>
 				</TouchableOpacity>
 			</View>
@@ -97,8 +105,6 @@ const Dashboard = () => {
 		</SafeAreaView>
 	);
 };
-
-export default Dashboard;
 
 const styles = StyleSheet.create({
 	textHeader: {
