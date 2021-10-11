@@ -14,7 +14,7 @@ import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
 import journal from "../../Assets/Dashboard/journal_white.png";
 import activity from "../../Assets/Dashboard/activity.png";
 
-export default function Dashboard ({ navigation }) {
+const Dashboard = () => {
 	// const onJournalPress = () => {
 	// 	navigation.navigate("Journal");
 	//   };
@@ -99,6 +99,8 @@ export default function Dashboard ({ navigation }) {
 		</SafeAreaView>
 	);
 }
+
+export default Dashboard;
 
 const styles = StyleSheet.create({
 	textHeader: {

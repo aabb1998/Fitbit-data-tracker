@@ -8,8 +8,8 @@ import activity from "../../Assets/Dashboard/activity.png";
 import { NavigationContainer } from '@react-navigation/native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
-import Journal from "./src/Components/Journal/Journal";
-import Dashboard from "./src/Components/Dashboard/Dashboard";
+import Journal from "../../Components/Journal/Journal";
+import Dashboard from "././././Dashboard";
 
 const Tabs = createMaterialTopTabNavigator()
 
