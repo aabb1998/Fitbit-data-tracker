@@ -20,9 +20,9 @@ export default function Journal ({ navigation }) {
       { name: "Steps" },
     ]);
 
-    const onActivityPress = () => {
-          navigation.navigate("Dashboard");
-        };
+    // const onActivityPress = () => {
+    //       navigation.navigate("Dashboard");
+    //     };
 
     const getChartParentSize = (event) => {
       const { width, height } = event.nativeEvent.layout;
@@ -118,14 +118,15 @@ export default function Journal ({ navigation }) {
           </View>
 
           <View style={styles.bottomContainer}>
-            <View style={styles.floatingMenu}>
+            {/* <View style={styles.floatingMenu}>
               <Image style={styles.button} source={bedwhite} />
               <Image style={styles.button3} source={journal} />
               <Image style={styles.button} source={heartWhite} />
               <TouchableOpacity onPress={() => onActivityPress()}>
                 <Image style={styles.button} source={activity} />
               </TouchableOpacity> 
-            </View>
+            </View> */}
+            <DashboardMenu/>
           </View>
         </View>
       </SafeAreaView>
@@ -269,25 +270,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff00",
   },
 
-  //orginal functionalities of DashboardMenu
-  floatingMenu: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: "#2D14C4",
-    padding: 20,
-    borderRadius: 30,
-    color: "white",
-  },
-  button: {
-    width: 20,
-    height: 20,
-    opacity: 0.4,
-  },
-  button3: {
-    width: 20,
-    height: 20,
-    opacity: 1,
-  },
+  // //orginal functionalities of DashboardMenu
+  // floatingMenu: {
+  //   width: "100%",
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   justifyContent: "space-around",
+  //   backgroundColor: "#2D14C4",
+  //   padding: 20,
+  //   borderRadius: 30,
+  //   color: "white",
+  // },
+  // button: {
+  //   width: 20,
+  //   height: 20,
+  //   opacity: 0.4,
+  // },
+  // button3: {
+  //   width: 20,
+  //   height: 20,
+  //   opacity: 1,
+  // },
 });

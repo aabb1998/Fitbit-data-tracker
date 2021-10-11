@@ -38,14 +38,13 @@ export default function App() {
 							options={{ headerLeft: false }}
 							component={Dashboard}
 						/>
-            <Stack.Screen
+            			<Stack.Screen
 							name="Journal"
 							options={{ headerLeft: false }}
 							component={Journal}
 						/>
 					</>
 				)}
-				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

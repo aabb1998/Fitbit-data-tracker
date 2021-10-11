@@ -9,8 +9,16 @@ import {
 } from "react-native";
 import DashboardFavorites from "./DashboardFavorites/DashboardFavorites";
 import DashboardMenu from "./DashboardMenu";
+import bedwhite from "../../Assets/Dashboard/bed-white.png";
+import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
+import journal from "../../Assets/Dashboard/journal_white.png";
+import activity from "../../Assets/Dashboard/activity.png";
 
-const Dashboard = () => {
+export default function Dashboard ({ navigation }) {
+	// const onJournalPress = () => {
+	// 	navigation.navigate("Journal");
+	//   };
+
 	return (
 		<SafeAreaView style={{ backgroundColor: "#F2F6F9", padding: 20 }}>
 			<View style={styles.mainContainer}>
@@ -79,12 +87,18 @@ const Dashboard = () => {
 				</View>
 			</View>
 			<DashboardFavorites />
-			<DashboardMenu />
+			{/* <View style={styles.floatingMenu}>
+              <Image style={styles.button} source={bedwhite} />
+              <TouchableOpacity onPress={() => onJournalPress()}>
+				  <Image style={styles.button3} source={journal} />
+              </TouchableOpacity> 
+			  <Image style={styles.button} source={heartWhite} />
+              <Image style={styles.button} source={activity} />
+            </View> */}
+			<DashboardMenu/>
 		</SafeAreaView>
 	);
-};
-
-export default Dashboard;
+}
 
 const styles = StyleSheet.create({
 	textHeader: {
@@ -171,4 +185,26 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		marginBottom: 20,
 	},
+
+	// //orginal functionalities of DashboardMenu
+	// floatingMenu: {
+	// 	width: "100%",
+	// 	display: "flex",
+	// 	flexDirection: "row",
+	// 	justifyContent: "space-around",
+	// 	backgroundColor: "#2D14C4",
+	// 	padding: 20,
+	// 	borderRadius: 30,
+	// 	color: "white",
+	//   },
+	//   button: {
+	// 	width: 20,
+	// 	height: 20,
+	// 	opacity: 0.4,
+	//   },
+	//   button3: {
+	// 	width: 20,
+	// 	height: 20,
+	// 	opacity: 1,
+	//   },
 });

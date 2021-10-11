@@ -6,18 +6,28 @@ import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
 import journal from "../../Assets/Dashboard/journal_white.png";
 import activity from "../../Assets/Dashboard/activity.png";
 
-const DashboardMenu = () => {
+export default function DashboardMenu({ navigation }) {
+  const onActivityPress = () => {
+    navigation.navigate("Dashboard");
+  };
+
+  // const onJournalPress = () => {
+  //   navigation.navigate("Journal");
+  // };
+  
   return (
     <View style={styles.floatingMenu}>
         <Image style={styles.button} source={bedwhite} />
-        <Image style={styles.button3} source={journal} />
+        <TouchableOpacity onPress={() => onJournalPress()}>
+          <Image style={styles.button3} source={journal} />
+        </TouchableOpacity>
         <Image style={styles.button} source={heartWhite} />
-        <Image style={styles.button} source={activity} />
+        <TouchableOpacity onPress={() => onActivityPress()}>
+          <Image style={styles.button} source={activity} />
+        </TouchableOpacity>
     </View>
   );
-};
-
-export default DashboardMenu;
+}
 
 const styles = StyleSheet.create({
   floatingMenu: {
