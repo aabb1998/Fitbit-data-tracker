@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import bed from "../../../Assets/Dashboard/bed.png";
-import run from "../../../Assets/Dashboard/run-black.png";
+import bed from "../../Assets/Dashboard/bed.png";
+import run from "../../Assets/Dashboard/run-black.png";
 
 const DashboardFavorites = () => {
 	return (

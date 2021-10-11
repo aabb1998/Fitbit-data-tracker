@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import { Image, View, StyleSheet, Text, SafeAreaView,TouchableOpacity } from "react-native";
+import { Image, View, StyleSheet, Text, SafeAreaView } from "react-native";
 import DashboardMenu from "../Dashboard/DashboardMenu";
 import journalIcon from "../../Assets/Journal/column.png";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { LineChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
-import bedwhite from "../../Assets/Dashboard/bed-white.png";
-import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
-import journal from "../../Assets/Dashboard/journal_white.png";
-import activity from "../../Assets/Dashboard/activity.png";
 
 export default function Journal ({ navigation }) {
     const [chartWidth, setChartWidth] = useState(0);
@@ -19,10 +15,6 @@ export default function Journal ({ navigation }) {
       },
       { name: "Steps" },
     ]);
-
-    // const onActivityPress = () => {
-    //       navigation.navigate("Dashboard");
-    //     };
 
     const getChartParentSize = (event) => {
       const { width, height } = event.nativeEvent.layout;
@@ -115,18 +107,6 @@ export default function Journal ({ navigation }) {
                 }}
               />
             </View>
-          </View>
-
-          <View style={styles.bottomContainer}>
-            {/* <View style={styles.floatingMenu}>
-              <Image style={styles.button} source={bedwhite} />
-              <Image style={styles.button3} source={journal} />
-              <Image style={styles.button} source={heartWhite} />
-              <TouchableOpacity onPress={() => onActivityPress()}>
-                <Image style={styles.button} source={activity} />
-              </TouchableOpacity> 
-            </View> */}
-            <DashboardMenu/>
           </View>
         </View>
       </SafeAreaView>
@@ -269,26 +249,4 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: "#ffffff00",
   },
-
-  // //orginal functionalities of DashboardMenu
-  // floatingMenu: {
-  //   width: "100%",
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   justifyContent: "space-around",
-  //   backgroundColor: "#2D14C4",
-  //   padding: 20,
-  //   borderRadius: 30,
-  //   color: "white",
-  // },
-  // button: {
-  //   width: 20,
-  //   height: 20,
-  //   opacity: 0.4,
-  // },
-  // button3: {
-  //   width: 20,
-  //   height: 20,
-  //   opacity: 1,
-  // },
 });
