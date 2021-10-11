@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
+import { StyleSheet, View, Image, Pressable } from "react-native";
 import bed from "../../Assets/Dashboard/bed.png";
 import bedwhite from "../../Assets/Dashboard/bed-white.png";
 import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
@@ -11,26 +11,40 @@ export default function DashboardMenu({ navigation }) {
     navigation.navigate("Dashboard");
   };
 
-  // const onJournalPress = () => {
-  //   navigation.navigate("Journal");
-  // };
+  const onJournalPress = () => {
+    navigation.navigate("Journal");
+  };
   
   return (
-    <View style={styles.floatingMenu}>
-        <Image style={styles.button} source={bedwhite} />
-        <TouchableOpacity onPress={() => onJournalPress()}>
-          <Image style={styles.button3} source={journal} />
-        </TouchableOpacity>
-        <Image style={styles.button} source={heartWhite} />
-        <TouchableOpacity onPress={() => onActivityPress()}>
-          <Image style={styles.button} source={activity} />
-        </TouchableOpacity>
+    <View style={styles.NavMenu}>
+        <Image 
+          style={styles.NavButtonOff} 
+          source={bedwhite} 
+        />
+        <Pressable 
+          onPress={() => onJournalPress()}>
+          <Image 
+            style={styles.NavButtonOn} 
+            source={journal} 
+          />
+        </Pressable>
+        <Image 
+          style={styles.NavButtonOff} 
+          source={heartWhite} 
+        />
+        <Pressable 
+          onPress={() => onActivityPress()}>
+          <Image 
+            style={styles.NavButtonOff} 
+            source={activity} 
+          />
+        </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  floatingMenu: {
+  NavMenu: {
     width: "100%",
     display: "flex",
     flexDirection: "row",
@@ -40,12 +54,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     color: "white",
   },
-  button: {
+  NavButtonOff: {
     width: 20,
     height: 20,
     opacity: 0.4,
   },
-  button3: {
+  NavButtonOn: {
     width: 20,
     height: 20,
     opacity: 1,
