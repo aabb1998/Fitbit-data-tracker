@@ -5,43 +5,71 @@ import bedwhite from "../../Assets/Dashboard/bed-white.png";
 import heartWhite from "../../Assets/Dashboard/heart-rate-white.png";
 import journal from "../../Assets/Dashboard/journal_white.png";
 import activity from "../../Assets/Dashboard/activity.png";
+import { NavigationContainer } from '@react-navigation/native'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import { createStackNavigator } from '@react-navigation/stack'
+import Journal from "./src/Components/Journal/Journal";
+import Dashboard from "./src/Components/Dashboard/Dashboard";
 
-export default function DashboardMenu({ navigation }) {
-  const onActivityPress = () => {
-    navigation.navigate("Dashboard");
-  };
+const Tabs = createMaterialTopTabNavigator()
 
-  const onJournalPress = () => {
-    navigation.navigate("Journal");
-  };
+const MyFooter = () => (
+    <Tabs.Navigator>
+        <Tabs.Screen name="Dashboard" component={Dashboard} 
+          style={styles.NavButtonOn} source={activity} />
+        <Tabs.Screen name="Journal" component={Journal} 
+          style={styles.NavButtonOn} source={journal} />
+    </Tabs.Navigator>
+)
+const stackConfig = {
+  headerMode: 'none',
+}
+
+const Stack = createStackNavigator()
   
+const DashboardMenu = () => {
+  // const onActivityPress = () => {
+  //   navigation.navigate("Dashboard");
+  // };
+
+  // const onJournalPress = () => {
+  //   navigation.navigate("Journal");
+  // };
   return (
-    <View style={styles.NavMenu}>
-        <Image 
-          style={styles.NavButtonOff} 
-          source={bedwhite} 
-        />
-        <Pressable 
-          onPress={() => onJournalPress()}>
-          <Image 
-            style={styles.NavButtonOn} 
-            source={journal} 
-          />
-        </Pressable>
-        <Image 
-          style={styles.NavButtonOff} 
-          source={heartWhite} 
-        />
-        <Pressable 
-          onPress={() => onActivityPress()}>
-          <Image 
-            style={styles.NavButtonOff} 
-            source={activity} 
-          />
-        </Pressable>
-    </View>
+      <NavigationContainer style={styles.NavMenu}>
+        <Stack.Navigator {...stackConfig}>
+          <Stack.Screen name="Tabs" component={MyFooter} />
+        </Stack.Navigator>
+      </NavigationContainer>
+
+    //   <View style={styles.NavMenu}>
+    //     <Image 
+    //       style={styles.NavButtonOff} 
+    //       source={bedwhite} 
+    //     />
+    //     <Pressable 
+    //       onPress={() => onJournalPress()}>
+    //       <Image 
+    //         style={styles.NavButtonOn} 
+    //         source={journal} 
+    //       />
+    //     </Pressable>
+    //     <Image 
+    //       style={styles.NavButtonOff} 
+    //       source={heartWhite} 
+    //     />
+    //     <Pressable 
+    //       onPress={() => onActivityPress()}>
+    //       <Image 
+    //         style={styles.NavButtonOff} 
+    //         source={activity} 
+    //       />
+    //     </Pressable>
+    // </View>
   );
 }
+
+export default DashboardMenu;
 
 const styles = StyleSheet.create({
   NavMenu: {
