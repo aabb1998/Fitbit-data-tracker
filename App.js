@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
 import FitbitWebView from "./src/Components/FitbitWebView";
 import Sleep from "./src/Components/SleepPage/Sleep";
+import PVTScreen from "./src/Screens/PVTScreen/PVTScreen";
 
 // import { decode, encode } from "base-64";
 // if (!global.btoa) {
@@ -54,9 +55,11 @@ export default function App() {
 						<Stack.Screen name="Sleep" component={Sleep} />
 					</>
 				)}
-				{/* <Stack.Screen name="Dashboard" component={Dashboard} />
-				<Stack.Screen name="fitbitView" component={FitbitWebView} /> */}
+				<Stack.Screen name="Dashboard" component={Dashboard} />
+				<Stack.Screen name="fitbitView" component={FitbitWebView} />
+				{<Stack.Screen name="Dashboard" component={Dashboard} />}
 			</Stack.Navigator>
 		</NavigationContainer>
+		// <PVTScreen></PVTScreen>
 	);
 }
