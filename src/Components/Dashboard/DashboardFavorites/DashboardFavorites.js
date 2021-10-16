@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import bed from "../../../Assets/Dashboard/bed.png";
-import run from "../../../Assets/Dashboard/run-black.png";
+import heartRate from "../../../Assets/Dashboard/heart-rate.png";
 
 const DashboardFavorites = () => {
 	return (
@@ -22,10 +22,10 @@ const DashboardFavorites = () => {
 				<View style={styles.favoritesInner}>
 					<Image
 						style={{ height: 20, width: 20, marginRight: 5 }}
-						source={run}
+						source={heartRate}
 					/>
 					<View>
-						<Text>Exercise</Text>
+						<Text>Heart Rate</Text>
 						<Text style={styles.analysisSmallText} t>
 							17 mins ago
 						</Text>

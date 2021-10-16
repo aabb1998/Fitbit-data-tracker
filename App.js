@@ -6,14 +6,21 @@ import { LoginScreen } from "./Index";
 import { RegistrationScreen } from "./Index";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Journal from "./src/Components/Journal/Journal";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
+
+// import { decode, encode } from "base-64";
+// if (!global.btoa) {
+// 	global.btoa = encode;
+// }
+// if (!global.atob) {
+// 	global.atob = decode;
+// }
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [user, setUser] = useState(null);
 
 	return (
 		<NavigationContainer>
@@ -37,11 +44,6 @@ export default function App() {
 							name="Dashboard"
 							options={{ headerLeft: false }}
 							component={Dashboard}
-						/>
-            <Stack.Screen
-							name="Journal"
-							options={{ headerLeft: false }}
-							component={Journal}
 						/>
 					</>
 				)}
