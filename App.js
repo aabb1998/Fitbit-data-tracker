@@ -51,7 +51,7 @@ export default function App() {
 						/>
 
 						<Stack.Screen
-							name="Notification"
+							name="Notifications"
 							options={{
 								headerShown: true,
 							  }}

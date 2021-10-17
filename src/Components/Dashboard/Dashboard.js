@@ -12,7 +12,7 @@ import DashboardMenu from "./DashboardMenu";
 
 export default function Dashboard({ navigation }) {
 	const onNotificationPress = () => {
-		navigation.navigate("Notification");
+		navigation.navigate("Notifications");
 
 	};
 
@@ -41,7 +41,7 @@ export default function Dashboard({ navigation }) {
 					onPress={() => onNotificationPress()}
 
 					style={{
-						backgroundColor: "#b793cf",
+						backgroundColor: "#5124b3",
 						padding: 8,
 						paddingLeft: 8,
 						paddingRight: 8,
