@@ -32,8 +32,6 @@ export default function NotificationScreen({ navigation }) {
 				};
 				console.log(uid);
 
-
-
 				firebase
 					.firestore()
 					.collection("users")
@@ -71,8 +69,24 @@ export default function NotificationScreen({ navigation }) {
 					style={{ flex: 1, width: "100%" }}
 					keyboardShouldPersistTaps="always"
 				>
-					
-
+				<Image
+			      style={styles.logo}
+			      source={require("../../../assets/notification.png")}
+			    />
+				<TouchableOpacity style={styles.button} onPress={() => this.showLongNotification()}>
+                    <Text style={styles.buttonText}>Receive Survey Reminders</Text>
+                </TouchableOpacity>
+				
+                <TouchableOpacity style={styles.button} onPress={() => this.showShortNotification()}>
+                    <Text style={styles.buttonText}>Receive Sleep Data Updates</Text>
+                </TouchableOpacity>
+				<View style={styles.footerView}>
+				    <Text style={styles.footerText}>
+					    Unsubscribe at any time!
+					</Text>
+				</View>
+				
+		        
 
 
 				</KeyboardAwareScrollView>

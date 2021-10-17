@@ -35,6 +35,11 @@ export default StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
+	buttonText: {
+		fontSize: 18,
+		color: 'white',
+		alignSelf: 'center',
+	  },
 	buttonTitle: {
 		color: "white",
 		fontSize: 16,
@@ -43,10 +48,13 @@ export default StyleSheet.create({
 	footerView: {
 		flex: 1,
 		alignItems: "center",
-		marginTop: 20,
+		marginTop: 150,
 	},
 	footerText: {
 		fontSize: 16,
+		alignItems: "flex-end",
+		//marginTop: 50,
+		fontFamily: "monospace",
 		color: "#FFFFFF",
 	},
 	footerLink: {
@@ -54,4 +62,26 @@ export default StyleSheet.create({
 		fontWeight: "bold",
 		fontSize: 16,
 	},
+	notifySection:{
+		display: "flex",
+		flexDirection: "row",
+		alignContent: "center",
+		textAlign: "center",
+		alignItems: "center",
+		marginBottom: 20,
+		marginTop: 50,
+		backgroundColor: "white",
+		borderRadius: 20,
+		height: 90,
+		padding: 20,
+		shadowColor: "gray",
+		shadowOffset: {
+			width: 0,
+			height: 7,
+		},
+		shadowOpacity: 1,
+		shadowRadius: 4,
+		elevation: 20,
+	},
+	
 });
