@@ -190,6 +190,27 @@ const Dashboard = ({ navigation }) => {
 						<Text style={styles.favoriteText}>Edit</Text>
 					</TouchableOpacity>
 				</View>
+				<View style={styles.favoritesHeader}>
+					<Text style={{ fontSize: 18, fontWeight: "bold" }}>
+						Favorites
+					</Text>
+					<TouchableOpacity
+						style={{
+							backgroundColor: "#2D14C4",
+							padding: 5,
+							paddingLeft: 8,
+							paddingRight: 8,
+							color: "white",
+							fontSize: 12,
+							fontWeight: 800,
+							fontFamily: "sans-serif",
+							borderRadius: 20,
+						}}
+						onPress={() => navigation.navigate("PVT")}
+					>
+						<Text style={styles.favoriteText}>PVT</Text>
+					</TouchableOpacity>
+				</View>
 				<View style={styles.fatigueSection}>
 					<View style={styles.fatigueSectionHeader}>
 						<Text style={{ fontSize: 15, fontWeight: "800" }}>
