@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import styles from "./styles";
 import { firebase } from "../../firebase/config";
 import { LinearGradient } from 'expo-linear-gradient';
+import LocalNotification from 'react-native-local-notification';
 
 export default function NotificationScreen({ navigation }) {
 	const [fullName, setFullName] = useState("");
