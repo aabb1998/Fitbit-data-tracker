@@ -15,7 +15,7 @@ if (!firebase.apps.length) {
 	const app = firebase.initializeApp(firebaseConfig);
 }
 
-const db = getFirestore(app);
+//const db = getFirestore(app);
 
 /*----------------README-----------------------------------
 
@@ -48,18 +48,18 @@ const data = {
 /*-------- BEGIN USERS CRUD -------------------*/
 
 //CREATE
-export await function createUser(data) {
+async function createUser(data) {
     db.collection("users").doc(data.uid).set({id:data.uid, email:data.email, fullName:data.fullName,})
     console.log('User Record created');
 }
 
 //READ
-export await function getAllUsers() { //returns all user records from the database
-    return await db.collection("users").get();
+async function getAllUsers() { //returns all user records from the database
+    return db.collection("users").get();
 }
 
-export await function getUserByID(data) { //returns only the user document with the matching uid
-    const record =  await db.collection("users").doc(data.uid).get();
+async function getUserByID(data) { //returns only the user document with the matching uid
+    const record =  db.collection("users").doc(data.uid).get();
     if (!record.exists) {
         console.log('No document with that uid');
         return;
@@ -68,8 +68,8 @@ export await function getUserByID(data) { //returns only the user document with 
     }
 }
 
-export await function getUserByField(data) { //pass in the name of the field you want to search and the value to check for
-    const record = await db.collection("users").where(data.fieldName, '==', data.fieldValue).get();
+async function getUserByField(data) { //pass in the name of the field you want to search and the value to check for
+    const record = db.collection("users").where(data.fieldName, '==', data.fieldValue).get();
     if (!record.exists) {
         console.log('No document matches that value');
         return;
@@ -79,18 +79,18 @@ export await function getUserByField(data) { //pass in the name of the field you
 }
 
 //UPDATE
-export await function updateUserEmail(data) { //Requires the uid to update the record
+async function updateUserEmail(data) { //Requires the uid to update the record
     db.collection("users").doc(data.uid).update({ email:data.email });
     console.log('User Email updated');
 }
 
-export await function updateUserFullName(data) { //Requires the uid to update the record
+async function updateUserFullName(data) { //Requires the uid to update the record
     db.collection("users").doc(data.uid).update({ fullName:data.fullName });
     console.log('User Full Name updated');
 }
 
 //DELETE
-export await function deleteUserRecord(data) { //deletes entire record, it is possible to delete individual fields but not needed
+async function deleteUserRecord(data) { //deletes entire record, it is possible to delete individual fields but not needed
     db.collection("users").doc(data.uid).delete();
     console.log('User Record deleted');
 }
@@ -102,7 +102,7 @@ export await function deleteUserRecord(data) { //deletes entire record, it is po
 /*--------- BEGIN PVT RESULTS CRUD -----------*/
 
 //CREATE
-export await function createPVTRecord(data) {
+async function createPVTRecord(data) {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const length = 20;
     let randomStr = "";
@@ -116,12 +116,12 @@ export await function createPVTRecord(data) {
 }
 
 //READ
-export await function getAllResults() { //returns all PVT Result records from the database
-    return await db.collection("pvtResults").get();
+async function getAllResults() { //returns all PVT Result records from the database
+    return db.collection("pvtResults").get();
 }
 
-export await function getPVTResultByUserID(data) { //returns only the PVT Result document with the matching document ID
-    const record =  await db.collection("pvtResults").doc(data.docID).get();
+async function getPVTResultByUserID(data) { //returns only the PVT Result document with the matching document ID
+    const record =  db.collection("pvtResults").doc(data.docID).get();
     if (!record.exists) {
         console.log('No document with that ID');
         return;
@@ -130,8 +130,8 @@ export await function getPVTResultByUserID(data) { //returns only the PVT Result
     }
 }
 
-export await function getResultByField(data) { //pass in the name of the field you want to search and the value to check for
-    const record = await db.collection("pvtResults").where(data.fieldName, '==', data.fieldValue).get();
+async function getResultByField(data) { //pass in the name of the field you want to search and the value to check for
+    const record = db.collection("pvtResults").where(data.fieldName, '==', data.fieldValue).get();
     if (!record.exists) {
         console.log('No document matches that value');
         return;
@@ -141,18 +141,18 @@ export await function getResultByField(data) { //pass in the name of the field y
 }
 
 //UPDATE
-export await function updatePVTTestScore(data) { //Requires the Document ID to update the record
+async function updatePVTTestScore(data) { //Requires the Document ID to update the record
     db.collection("pvtResults").doc(data.docID).update({ score:data.score });
     console.log('PVT Test Score updated');
 }
 
-export await function updatePVTTestDateTime(data) { //Requires the Document ID to update the record
+async function updatePVTTestDateTime(data) { //Requires the Document ID to update the record
     db.collection("pvtResults").doc(data.docID).update({ testDateTime:data.testDateTime });
     console.log('PVT Test DateTime updated');
 }
 
 //DELETE
-export await function deletePVTResultRecord(data) { //deletes entire record, it is possible to delete individual fields but not needed
+async function deletePVTResultRecord(data) { //deletes entire record, it is possible to delete individual fields but not needed
     db.collection("pvtResults").doc(data.docID).delete();
     console.log('PVT Result Record deleted');
 }
