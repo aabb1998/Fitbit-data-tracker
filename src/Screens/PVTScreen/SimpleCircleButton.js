@@ -42,8 +42,8 @@ export default class SimpleCircleButton extends Component {
     }
     else //the button is currently green
     {
-      this.setState({colorId: 1});
       this.state.responseTime = time;
+      this.setState({colorId: 1});
 
       if (time < 100 && !this.state.started )//indicates invalid test
       {
@@ -51,7 +51,9 @@ export default class SimpleCircleButton extends Component {
       }
       else 
       {
-        this.state.results.push(time);
+        if (!this.state.started){
+          this.state.results.push(time);
+        }
         if (time > 355){
           this.state.lapses = this.state.lapses + 1;
         }
@@ -88,7 +90,7 @@ export default class SimpleCircleButton extends Component {
     var data = {
       score: score,
       testDateTime: Date.now(),
-      uid: 1,
+      uid: "2NtcfLvuM4M7IMSTScMFIUi6wih1",
       results: this.state.results
     }
 
