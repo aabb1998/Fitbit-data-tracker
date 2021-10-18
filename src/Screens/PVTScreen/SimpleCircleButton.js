@@ -91,6 +91,15 @@ export default class SimpleCircleButton extends Component {
     var avg = total/this.state.results.length;
     alert('total' + total);
     alert('avg' + avg);
+
+    var score = 100 - ((this.state.falseStarts + this.state.lapses)/(this.state.results.length + this.state.falseStarts)*100);
+
+    var data = {
+      score: score,
+      testDateTime: Date.now(),
+      uid: 1,
+      results: this.state.results
+    }
   }
 
   startStopwatch() 
