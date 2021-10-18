@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity,SafeAreaView,ScrollView } from 'react-native';
 
 const PSS = () => {
-    return (
+    return(
+        <ScrollView style={styles.scrollView}>
         <View>
             <View>
                 <Text>  </Text>
@@ -14,9 +15,13 @@ const PSS = () => {
             </View>
 
             <View>
-                <Text style = {styles.question}>Choose appropriate answer for each question </Text>
-                <Text style = {styles.question}>0 - never   1 - almost never   2 - sometimes </Text>
-                <Text style = {styles.question}>        3 - fairly often   4 - very often   </Text>
+                <Text style = {styles.scale}>Choose appropriate answer for each question </Text>
+                <Text style = {styles.scale}>0 - never</Text>
+                <Text style = {styles.scale}>1 - almost never</Text>
+                <Text style = {styles.scale}>2 - sometimes</Text>
+                <Text style = {styles.scale}>3 - fairly often</Text>
+                <Text style = {styles.scale}>4 - very often</Text>
+                <Text></Text>
             </View>
 
             <View style = {styles.top}>
@@ -309,6 +314,7 @@ const PSS = () => {
             </View>
 
         </View>  
+        </ScrollView>
     )
 }
 export default PSS
@@ -346,6 +352,12 @@ const styles = StyleSheet.create({
         question: {
             fontSize: 25,
         },
+        scale:{
+            fontSize:25,
+            fontWeight:'500',
+            color:'black',
+
+        },
         option:{
             fontSize: 18,
             fontWeight: '500',
@@ -377,5 +389,8 @@ const styles = StyleSheet.create({
         description:{
             fontSize:15,
         },
+        scrollView: {
+            backgroundColor: 'white',
+          },
 
   });

@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity,ScrollView } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from "./styles";
@@ -24,6 +24,7 @@ export default function HomeScreen({ navigation }) {
 	};
 
 	return (
+		<ScrollView>
 		<View style={styles.container}>
 			<LinearGradient
 				style={{ flex: 1, width: "100%" }}
@@ -44,7 +45,7 @@ export default function HomeScreen({ navigation }) {
 			</LinearGradient>
 
 		</View>
-
+		</ScrollView>
 
 	);
 }

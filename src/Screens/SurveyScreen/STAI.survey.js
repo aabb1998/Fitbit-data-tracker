@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity, SafeAreaView,ScrollView } from 'react-native';
 
 const STAI = () => {
     return (
+        <ScrollView style={styles.scrollView}>
         <View>
             <View>
                 <Text>  </Text>
@@ -16,7 +17,10 @@ const STAI = () => {
             <View>
                 <Text style = {styles.form}>Self-evaluation form 1</Text>
                 <Text style = {styles.description}>A number of statements which people have used to describe themselves to indicate how they feel at the momment. </Text>
-                <Text style = {styles.description}>1 - Not at all  2 - Somewhat  3 - Moderately  4 - Very much</Text>
+                <Text style = {styles.description}>1 - Not at all</Text>
+                <Text style = {styles.description}>2 - Somewhat</Text>
+                <Text style = {styles.description}>3 - Moderately</Text>
+                <Text style = {styles.description}>4 - Very Much</Text>
             </View>
 
 
@@ -449,7 +453,10 @@ const STAI = () => {
                 <Text>  </Text>
                 <Text style = {styles.form}>Self-evaluation form 2</Text>
                 <Text style = {styles.description}>A number of statements which people have used to describe themselves to indicate how they generally feel. </Text>
-                <Text style = {styles.description}>1 - Amost never  2 - Sometimes  3 - Often  4 - Almost Always </Text>
+                <Text style = {styles.description}>1 - Amost never</Text>
+                <Text style = {styles.description}>2 - Sometimes</Text>
+                <Text style = {styles.description}>3 - Often</Text>
+                <Text style = {styles.description}>4 - Almost Always</Text>
             </View>
 
             <View style = {styles.top}>
@@ -881,6 +888,8 @@ const STAI = () => {
                 </TouchableOpacity>
             </View>
         </View>
+        </ScrollView>
+
     )
 }
 
@@ -951,8 +960,11 @@ const styles = StyleSheet.create({
             fontSize:20,
         },
         form:{
-            fontSize:28,
+            fontSize:30,
             textAlign:'center',
         },
 
+        scrollView: {
+            backgroundColor: 'white',
+        },
   });

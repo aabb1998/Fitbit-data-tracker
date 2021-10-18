@@ -49,8 +49,10 @@ export default function App() {
 						/>
 					</>
 				)}
-				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
+				{/* <Stack.Screen name="Dashboard" component={Dashboard} */}
 			</Stack.Navigator>
 		</NavigationContainer>
+
+
 	);
 }
