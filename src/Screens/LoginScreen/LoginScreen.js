@@ -32,7 +32,6 @@ export default function LoginScreen({ navigation }) {
 				.catch((error) => {
 					alert(error);
 				});
-			// oAuth();
 		}
 	};
 
