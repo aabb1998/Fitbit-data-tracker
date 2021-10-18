@@ -1,7 +1,9 @@
 import React, {Component , useEffect} from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Alert} from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Alert, Button} from 'react-native';
+import * as functions from "../../firebase/config";
 
-const duration = 180000;
+//const duration = 180000;
+const duration = 20000;
 
 export default class SimpleCircleButton extends Component {
   constructor(props) {
@@ -80,26 +82,18 @@ export default class SimpleCircleButton extends Component {
   }
 
   EndPVT(){
-    //send data to firebase etc
-    var total = 0;
+    this.stopStopwatch();
+    var score = 100 - ((this.state.falseStarts + this.state.lapses)/(this.state.results.length + this.state.falseStarts)*100).toFixed(2);
     
-    for (var i = 0; i < this.state.results.length; i++)
-    {
-        alert('res:' + this.state.results[i]);
-        total += this.state.results[i];
-    }
-    var avg = total/this.state.results.length;
-    alert('total' + total);
-    alert('avg' + avg);
-
-    var score = 100 - ((this.state.falseStarts + this.state.lapses)/(this.state.results.length + this.state.falseStarts)*100);
-
     var data = {
       score: score,
       testDateTime: Date.now(),
       uid: 1,
       results: this.state.results
     }
+
+    functions.createPVTRecord(data);
+    alert("PVT Completed Successfully! Your score was " + score + "%");
   }
 
   startStopwatch() 
@@ -148,12 +142,8 @@ export default class SimpleCircleButton extends Component {
             <Text style={styles.text}>{this.state.started}</Text>
           {this.props.children}
         </TouchableOpacity>
-        <Text>Response Time: {this.state.responseTime}</Text>
-        <Text>False: {this.state.falseStarts}</Text>
-        <Text>Total Time: {this.state.total}</Text>
-        <Text>Test Interval: {this.state.testInterval}</Text>
-        <Text>s: {this.state.time}</Text>
-        <Text>lapses: {this.state.lapses}</Text>
+        <Text style={styles.respTime}>Response Time: {this.state.responseTime}ms</Text>
+        <Button title="End Test" onPress={() => this.EndPVT()}/>
       </View>
     )
   }
@@ -171,6 +161,12 @@ const styles = StyleSheet.create({
     //backgroundColor: 'rgba(255,95,28,1)', //add a background to highlight the touchable area
     alignItems: 'center',
     marginBottom:50
+  },
+  respTime: {
+    marginTop: 30,
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom:30
   },
   buttonOn: {
     backgroundColor: 'rgba(0,210,0,1)',
@@ -198,5 +194,3 @@ const styles = StyleSheet.create({
     marginLeft: devWidth /4.2
   },
 });
-
-/*NOTE: THIS IS USED BASED ON A TUTORIAL AT https://www.jsparling.com/round-buttons-in-react-native/*/

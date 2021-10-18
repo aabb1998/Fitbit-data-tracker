@@ -15,7 +15,7 @@ if (!firebase.apps.length) {
 	const app = firebase.initializeApp(firebaseConfig);
 }
 
-const db = getFirestore(app);
+//const db = getFirestore(app);
 
 /*----------------README-----------------------------------
 
@@ -111,7 +111,7 @@ export async function createPVTRecord(data) {
         const randomNum = Math.floor(Math.random() * characters.length);
         randomStr += characters[randomNum];
     }
-    app.collection("pvtResults").doc(randomStr).set({score:data.score, testDateTime:data.testDateTime, uid:data.uid,})
+    app.collection("pvtResults").doc(randomStr).set({score:data.score, testDateTime:data.testDateTime, uid:data.uid, results:data.results,})
     console.log('PVT Result Record created');
 }
 

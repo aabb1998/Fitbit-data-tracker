@@ -19,13 +19,7 @@ export default function PVTScreen(props) {
                 <Text style={localStyles.instruction}>4. Click 'End Test' to end the test early</Text>
             </View>
             <View style={localStyles.contentContainer}>
-                <SimpleCircleButton />
-                <Button style={localStyles.button}
-                    title="End Test"
-                />
-            </View>
-            <View style={localStyles.resultContainer}>
-                <Text style={localStyles.heading}>Response Time: 0.345</Text>
+                <SimpleCircleButton />                
             </View>
         </View>
     );
@@ -38,12 +32,7 @@ const styles = StyleSheet.create({
         //backgroundColor: 'rgba(3,168,203,1)', //add a background to highlight the touchable area
         alignItems: 'center',
         marginBottom: devHeight / 10
-    },
-    button: {
-        color: 'brown',
-        marginTop: 50,
-        width: 150
-    },
+    },    
     instructionContainer: {
         position: 'relative',
         zIndex: 0,
