@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "890856216222",
+    "project_id": "fitbit-data-tracker",
+    "storage_bucket": "fitbit-data-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890856216222:android:79a6ccf53d19f9a4b7cd8f",
+        "android_client_info": {
+          "package_name": "com.fitbitdatatracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890856216222-she6vmb9pno7qgdmai828t4of158qr9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAquHjVCXHb3JFbqbdfykqHS9eEZ05NmOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890856216222-she6vmb9pno7qgdmai828t4of158qr9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
