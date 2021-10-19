@@ -162,58 +162,21 @@ const Dashboard = ({ navigation }) => {
 					<Image
 						style={styles.profileImg}
 						source={{
-							uri: "https://media-exp1.licdn.com/dms/image/C5603AQFQY_gG-DCSuw/profile-displayphoto-shrink_200_200/0/1599099548476?e=1636588800&v=beta&t=BVdy-GEPdujawBjWCF_vyaED5d9jm8mG8FLu3ahSTBg",
+							uri: "https://180dc.org/wp-content/uploads/2017/11/profile-placeholder.png",
 						}}
 					/>
-					<Text style={styles.userSectionName}>
-						{profileData?.user?.fullName}
-					</Text>
+					<View>
+						<Text>Welcome back,</Text>
+						<Text style={styles.userSectionName}>
+							{profileData?.user?.fullName}
+						</Text>
+					</View>
+
 					<Text style={styles.userSectionName}></Text>
-				</View>
-				<View style={styles.favoritesHeader}>
-					<Text style={{ fontSize: 18, fontWeight: "bold" }}>
-						Favorites
-					</Text>
-					<TouchableOpacity
-						style={{
-							backgroundColor: "#2D14C4",
-							padding: 5,
-							paddingLeft: 8,
-							paddingRight: 8,
-							color: "white",
-							fontSize: 12,
-							fontWeight: 800,
-							fontFamily: "sans-serif",
-							borderRadius: 20,
-						}}
-					>
-						<Text style={styles.favoriteText}>Edit</Text>
-					</TouchableOpacity>
-				</View>
-				<View style={styles.favoritesHeader}>
-					<Text style={{ fontSize: 18, fontWeight: "bold" }}>
-						Favorites
-					</Text>
-					<TouchableOpacity
-						style={{
-							backgroundColor: "#2D14C4",
-							padding: 5,
-							paddingLeft: 8,
-							paddingRight: 8,
-							color: "white",
-							fontSize: 12,
-							fontWeight: 800,
-							fontFamily: "sans-serif",
-							borderRadius: 20,
-						}}
-						onPress={() => navigation.navigate("PVT")}
-					>
-						<Text style={styles.favoriteText}>PVT</Text>
-					</TouchableOpacity>
 				</View>
 				<View style={styles.fatigueSection}>
 					<View style={styles.fatigueSectionHeader}>
-						<Text style={{ fontSize: 15, fontWeight: "800" }}>
+						<Text style={{ fontSize: 20, fontWeight: "800" }}>
 							Overall Fatigue
 						</Text>
 					</View>
@@ -241,7 +204,39 @@ const Dashboard = ({ navigation }) => {
 						</Text>
 					</View>
 				</View>
-				<DashboardFavorites />
+				<View style={styles.vasSection}>
+					<View style={styles.vasSectionHeader}>
+						<Text style={{ fontSize: 20, fontWeight: "900" }}>
+							Visual Analog Scale
+						</Text>
+						<TouchableOpacity
+							style={{
+								backgroundColor: "#2D14C4",
+								padding: 5,
+								paddingLeft: 8,
+								paddingRight: 8,
+								color: "white",
+								fontSize: 12,
+								fontWeight: 800,
+								fontFamily: "sans-serif",
+								borderRadius: 20,
+							}}
+						>
+							<Text style={styles.favoriteText}>START VAS</Text>
+						</TouchableOpacity>
+					</View>
+					<View
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							marginLeft: 70,
+						}}
+					>
+						<Text>VAS last completed on 19/10/21</Text>
+					</View>
+				</View>
+
+				{/* <DashboardFavorites /> */}
 				<TouchableOpacity
 					style={styles.fitbitConnectBtn}
 					onPress={() => navigation.navigate("fitbitView")}
@@ -249,12 +244,6 @@ const Dashboard = ({ navigation }) => {
 					<Text style={{ textAlign: "center" }}>
 						Connect to Fitbit Account
 					</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={styles.fitbitConnectBtn}
-					onPress={signOut}
-				>
-					<Text style={{ textAlign: "center" }}>Signout</Text>
 				</TouchableOpacity>
 			</ScrollView>
 			<DashboardMenu />
@@ -272,6 +261,13 @@ const styles = StyleSheet.create({
 	},
 	textSmall: {
 		fontSize: 18,
+	},
+	vasSection: {
+		backgroundColor: "white",
+		borderRadius: 20,
+		padding: 20,
+		height: 120,
+		marginTop: 20,
 	},
 	mainContainer: {
 		marginTop: 20,
@@ -310,6 +306,14 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		padding: 20,
 		height: 200,
+	},
+	vasSectionHeader: {
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		textAlign: "center",
+		marginBottom: 20,
+		alignItems: "flex-end",
 	},
 	fatigueSectionData: {
 		display: "flex",
