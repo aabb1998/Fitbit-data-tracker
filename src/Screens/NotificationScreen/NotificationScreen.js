@@ -7,6 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import LocalNotification from 'react-native-local-notification';
 
 export default function NotificationScreen({ navigation }) {
+
 	const [fullName, setFullName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -74,20 +75,21 @@ export default function NotificationScreen({ navigation }) {
 			      style={styles.logo}
 			      source={require("../../../assets/notification.png")}
 			    />
-				<TouchableOpacity style={styles.button} onPress={() => this.showLongNotification()}>
+				<TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
                     <Text style={styles.buttonText}>Receive Survey Reminders</Text>
                 </TouchableOpacity>
 				
-                <TouchableOpacity style={styles.button} onPress={() => this.showShortNotification()}>
+                <TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
                     <Text style={styles.buttonText}>Receive Sleep Data Updates</Text>
                 </TouchableOpacity>
-				<View style={styles.footerView}>
-				    <Text style={styles.footerText}>
-					    Unsubscribe at any time!
-					</Text>
-				</View>
-				
-		        
+
+				<TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
+                    <Text style={styles.buttonText}>Receive PVT Reminders</Text>
+                </TouchableOpacity>
+
+				<TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
+                    <Text style={styles.buttonText}>Unsubscribe</Text>
+                </TouchableOpacity>
 
 
 				</KeyboardAwareScrollView>
