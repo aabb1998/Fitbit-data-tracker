@@ -57,7 +57,9 @@ export default function PVTScreen(props) {
 			</View>
 			<View style={localStyles.contentContainer}>
 				<SimpleCircleButton />
-				{/* <Button style={localStyles.button} title="End Test" /> */}
+				<TouchableOpacity style={localStyles.button}>
+					<Text style={{ color: "white" }}>End Test</Text>
+				</TouchableOpacity>
 			</View>
 			<View style={localStyles.resultContainer}>
 				<Text style={localStyles.heading}>Response Time: 0.345</Text>
@@ -72,12 +74,13 @@ const styles = StyleSheet.create({
 		zIndex: 0,
 		//backgroundColor: 'rgba(3,168,203,1)', //add a background to highlight the touchable area
 		alignItems: "center",
-		marginBottom: devHeight / 10,
+		// marginBottom: devHeight / 10,
 	},
 	button: {
-		color: "brown",
-		marginTop: 50,
-		width: 150,
+		color: "white",
+		backgroundColor: "black",
+		padding: 10,
+		borderRadius: 20,
 	},
 	instructionContainer: {
 		// position: "relative",

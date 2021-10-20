@@ -235,16 +235,43 @@ const Dashboard = ({ navigation }) => {
 						<Text>VAS last completed on 19/10/21</Text>
 					</View>
 				</View>
-
+				<View style={styles.fitbitSection}>
+					<View style={styles.vasSectionHeader}>
+						<Text style={{ fontSize: 20, fontWeight: "900" }}>
+							Fitbit Account
+						</Text>
+						<TouchableOpacity
+							style={{
+								backgroundColor: "#2D14C4",
+								padding: 5,
+								paddingLeft: 8,
+								paddingRight: 8,
+								color: "white",
+								fontSize: 12,
+								fontWeight: 800,
+								fontFamily: "sans-serif",
+								borderRadius: 20,
+							}}
+							onPress={() => navigation.navigate("fitbitView")}
+						>
+							<Text style={styles.favoriteText}>CONNECT</Text>
+						</TouchableOpacity>
+					</View>
+					<View
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							textAlign: "center",
+							alignContent: "center",
+							marginLeft: 40,
+						}}
+					>
+						<Text>
+							Data not loading? Re-connect your fitbit account.
+						</Text>
+					</View>
+				</View>
 				{/* <DashboardFavorites /> */}
-				<TouchableOpacity
-					style={styles.fitbitConnectBtn}
-					onPress={() => navigation.navigate("fitbitView")}
-				>
-					<Text style={{ textAlign: "center" }}>
-						Connect to Fitbit Account
-					</Text>
-				</TouchableOpacity>
 			</ScrollView>
 			<DashboardMenu />
 		</SafeAreaView>
@@ -268,6 +295,14 @@ const styles = StyleSheet.create({
 		padding: 20,
 		height: 120,
 		marginTop: 20,
+	},
+	fitbitSection: {
+		backgroundColor: "white",
+		borderRadius: 20,
+		padding: 20,
+		height: 120,
+		marginTop: 20,
+		marginBottom: 100,
 	},
 	mainContainer: {
 		marginTop: 20,
@@ -353,5 +388,12 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		marginTop: 10,
 		borderRadius: 20,
+		width: 200,
+	},
+	fitbitButton: {
+		display: "flex",
+		justifyContent: "center",
+		alignContent: "center",
+		alignItems: "center",
 	},
 });

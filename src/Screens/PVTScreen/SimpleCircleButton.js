@@ -144,8 +144,8 @@ export default class SimpleCircleButton extends Component {
 
 				<View style={styles.dataSection}>
 					<View style={styles.dataItem}>
-						<Text>Response: </Text>
-						<Text>{this.state.responseTime}</Text>
+						<Text>Time: </Text>
+						<Text>{this.state.time}</Text>
 					</View>
 					<View style={styles.dataItem}>
 						<Text>Total: </Text>
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
 		zIndex: 0,
 		//backgroundColor: 'rgba(255,95,28,1)', //add a background to highlight the touchable area
 		alignItems: "center",
-		marginBottom: 50,
+		marginBottom: 20,
 	},
 	buttonOn: {
 		backgroundColor: "rgba(0,210,0,1)",
@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#C4C4C4",
 		padding: 7,
 		borderRadius: 10,
+		height: 90,
 	},
 });
 
