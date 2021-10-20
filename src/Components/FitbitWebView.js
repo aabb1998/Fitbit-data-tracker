@@ -18,10 +18,14 @@ import URLParse from "url-parse";
 import config from "../../config";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import firebase from "firebase";
 
 const FitbitWebView = ({ navigation }) => {
 	const [accessToken, setAccessToken] = useState();
-	const [accountToken, setAccountToken] = useState();
+	const [accountToken, setAccountToken] = useState("");
+	const [userUid, setUserUid] = useState("");
+	const [user, setUser] = useState({});
+	const [tokenAdded, setTokenAdded] = useState(false);
 
 	useEffect(() => {
 		var regex = /[#?&]([^=#]+)=([^&#]*)/g,
@@ -33,17 +37,92 @@ const FitbitWebView = ({ navigation }) => {
 		// console.log(params.access_token);
 		if (params.access_token) {
 			setAccountToken(params.access_token);
+			// console.log(params.access_token);
 		}
 	}, [accessToken]);
 
-	useEffect(() => {
-		console.log(accountToken);
-		// getData(accountToken);
-	}, [accountToken]);
+	// useEffect(() => {
+	// 	// console.log(accountToken);
+	// 	// getData(accountToken);
+	// }, [accountToken]);
 
 	const onNavigationStateChange = (navigationState) => {
 		const url = navigationState.url;
 	};
+
+	useEffect(() => {
+		const getUserId = () => {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					setUserUid(user.uid);
+					setUser(user);
+				}
+			});
+		};
+		const getUserCollections = async () => {
+			const userCollection = await firebase
+				.firestore()
+				.collection("users")
+				.get();
+			const docs = userCollection.docs.map((doc) => doc.data());
+		};
+		getUserCollections();
+		getUserId();
+	}, []);
+
+	const addUserToDatabase = () => {
+		console.log("Adding user to database");
+		if (accountToken) {
+			firebase.firestore().collection("users").doc(userUid).set({
+				email: user.email,
+				id: userUid,
+				token: accountToken,
+			});
+		}
+	};
+
+	const addTokenToUser = (userID) => {
+		console.log("Adding token to current user");
+		console.log(accountToken);
+		if (accountToken && !tokenAdded) {
+			firebase
+				.firestore()
+				.collection("users")
+				.doc(userID)
+				.update({
+					token: accountToken,
+				})
+				.then(() => {
+					console.log("User token updated");
+					setTokenAdded(!tokenAdded);
+				});
+		}
+	};
+
+	useEffect(() => {
+		const userID = userUid;
+		const findUser = async () => {
+			if (userID) {
+				const userCheck = await firebase
+					.firestore()
+					.collection("users")
+					.doc(userID)
+					.onSnapshot((documentSnapshot) => {
+						if (documentSnapshot.data() === undefined) {
+							addUserToDatabase();
+						} else {
+							// console.log("User found in the datrabase");
+							if (!tokenAdded) {
+								addTokenToUser(userID);
+							} else {
+								console.log("Token has already been added.");
+							}
+						}
+					});
+			}
+		};
+		findUser();
+	}, [accountToken]);
 
 	return (
 		<WebView
@@ -61,9 +140,9 @@ const FitbitWebView = ({ navigation }) => {
 				const { nativeEvent } = syntheticEvent;
 				// console.log("WebView error: ", nativeEvent);
 				// console.log(nativeEvent.url);
-				if (!accessToken) {
-					setAccessToken(nativeEvent.url);
-				}
+				// if (!accessToken) {
+				setAccessToken(nativeEvent.url);
+				// }
 			}}
 			onMessage={(event) => Alert.alert("Test")}
 			renderError={() => {
