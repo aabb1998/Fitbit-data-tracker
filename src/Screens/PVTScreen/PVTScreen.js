@@ -29,26 +29,35 @@ export default function PVTScreen(props) {
 				>
 					<Image style={styles.imagestyle} source={backButton} />
 				</TouchableOpacity>
-				<Text style={styles.textHeaderText}>PVT</Text>
+				<Text style={styles.textHeaderText}>PVT Test</Text>
 			</View>
 			<View style={localStyles.instructionContainer}>
-				<Text style={localStyles.heading}>Instructions</Text>
-				<Text style={localStyles.instruction}>
-					1. Click the green gutton to start
-				</Text>
-				<Text style={localStyles.instruction}>
-					2. Wait for the button to change from red to green
-				</Text>
-				<Text style={localStyles.instruction}>
-					3. Click the button once it turns green
-				</Text>
-				<Text style={localStyles.instruction}>
-					4. Click 'Esnd Test' to end the test early
-				</Text>
+				{/* <Text style={localStyles.heading}>Instructions</Text> */}
+				<View style={localStyles.instructionView}>
+					<Text style={localStyles.instruction}>
+						1. Click the green gutton to start
+					</Text>
+				</View>
+
+				<View style={localStyles.instructionView}>
+					<Text style={localStyles.instruction}>
+						2. Wait for change from red to green
+					</Text>
+				</View>
+				<View style={localStyles.instructionView}>
+					<Text style={localStyles.instruction}>
+						3. Click the button once green appears
+					</Text>
+				</View>
+				<View style={localStyles.instructionView}>
+					<Text style={localStyles.instruction}>
+						4. Click 'End Test' to end the test early
+					</Text>
+				</View>
 			</View>
 			<View style={localStyles.contentContainer}>
 				<SimpleCircleButton />
-				<Button style={localStyles.button} title="End Test" />
+				{/* <Button style={localStyles.button} title="End Test" /> */}
 			</View>
 			<View style={localStyles.resultContainer}>
 				<Text style={localStyles.heading}>Response Time: 0.345</Text>
@@ -71,12 +80,20 @@ const styles = StyleSheet.create({
 		width: 150,
 	},
 	instructionContainer: {
-		position: "relative",
-		zIndex: 0,
-		//backgroundColor: 'rgba(160,95,28,1)', //add a background to highlight the touchable area
-		marginTop: devHeight / 40,
-		marginBottom: devHeight / 20,
-		paddingLeft: devWidth * 0.025,
+		// position: "relative",
+		// zIndex: 0,
+		// //backgroundColor: 'rgba(160,95,28,1)', //add a background to highlight the touchable area
+		// marginTop: devHeight / 40,
+		// marginBottom: devHeight / 20,
+		// paddingLeft: devWidth * 0.025,
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		width: 400,
+		// alignContent: "center",
+		alignItems: "center",
+		marginTop: 20,
+		marginBottom: 20,
 	},
 	heading: {
 		fontWeight: "bold",
@@ -84,6 +101,8 @@ const styles = StyleSheet.create({
 	},
 	instruction: {
 		fontSize: 16,
+		fontWeight: "500",
+		color: "white",
 	},
 	resultContainer: {
 		paddingLeft: devWidth * 0.025,
@@ -106,7 +125,7 @@ const styles = StyleSheet.create({
 	textHeaderText: {
 		fontSize: 20,
 		fontFamily: "sans-serif",
-		marginLeft: 150,
+		marginLeft: 140,
 		color: "black",
 		marginTop: 10,
 	},
@@ -115,5 +134,12 @@ const styles = StyleSheet.create({
 		display: "flex",
 		flexDirection: "column",
 		textAlign: "left",
+	},
+	instructionView: {
+		backgroundColor: "#2D14C4",
+		marginBottom: 5,
+		padding: 8,
+		width: 300,
+		borderRadius: 20,
 	},
 });
