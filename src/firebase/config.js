@@ -233,7 +233,7 @@ export async function createWeeklySurveyRecord(data) {
         const randomNum = Math.floor(Math.random() * characters.length);
         randomStr += characters[randomNum];
     }
-    firebase.firestore().collection("weeklySurvey").doc(randomStr).set({answer:data.answer, questionID:data.questionID, surveyDateTime:data.surveyDateTime, surveyType:data.surveyType, uid:data.uid,})
+    firebase.firestore().collection("weeklySurvey").doc(randomStr).set({answer:data.answer, surveyDateTime:data.surveyDateTime, surveyType:data.surveyType, uid:data.uid,})
     console.log('Weekly Survey Record created');
 }
 
