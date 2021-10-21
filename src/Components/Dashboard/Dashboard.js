@@ -235,44 +235,6 @@ const Dashboard = ({ navigation }) => {
 						<Text>VAS last completed on 19/10/21</Text>
 					</View>
 				</View>
-				<View style={styles.vasSection}>
-					<View style={styles.vasSectionHeader}>
-						<Text
-							style={{
-								fontSize: 20,
-								fontWeight: "900",
-								width: 220,
-							}}
-						>
-							Psychomotor Vigilence Test
-						</Text>
-						<TouchableOpacity
-							style={{
-								backgroundColor: "#2D14C4",
-								padding: 5,
-								paddingLeft: 8,
-								paddingRight: 8,
-								color: "white",
-								fontSize: 12,
-								fontWeight: 800,
-								fontFamily: "sans-serif",
-								borderRadius: 20,
-							}}
-							onPress={() => navigation.navigate("PVT")}
-						>
-							<Text style={styles.favoriteText}>START PVT</Text>
-						</TouchableOpacity>
-					</View>
-					<View
-						style={{
-							display: "flex",
-							justifyContent: "center",
-							marginLeft: 70,
-						}}
-					>
-						<Text>PVT last completed on 12/10/21</Text>
-					</View>
-				</View>
 				<View style={styles.fitbitSection}>
 					<View style={styles.vasSectionHeader}>
 						<Text style={{ fontSize: 20, fontWeight: "900" }}>
@@ -386,7 +348,7 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		textAlign: "center",
 		marginBottom: 20,
-		alignItems: "flex-start",
+		alignItems: "flex-end",
 	},
 	fatigueSectionData: {
 		display: "flex",
