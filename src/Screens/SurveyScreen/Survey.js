@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, ScrollView, Image, Button} from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, SafeAreaView, StyleSheet, ScrollView, Image, Button} from 'react-native';
 import { Component } from 'react';
 import RadioButton from "../../Components/RadioButton";
 import { Card } from 'react-native-paper';
 import Constants from 'expo-constants';
+import backButton from "../../Assets/Dashboard/backArrow.png";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
 
 const PROP = [
   {
@@ -48,10 +51,19 @@ const PROP = [
   },
 ];
 
-export default class Survey extends Component {
-  render() {
+export default function Survey()  {
+const navigation = useNavigation();
+  //render() {
     return (
-      <View style={styles.container2}>
+
+      <SafeAreaView style={styles.container2}>
+      <ScrollView>
+      <TouchableOpacity
+                        					onPress={() => navigation.navigate("Dashboard")}
+                        				>
+                        					<Image style={styles.imagestyle} source={backButton} />
+                        				</TouchableOpacity>
+
               <Text style={styles.paragraph2}>
                 Karolinska Sleepiness Scale
               </Text>
@@ -62,12 +74,14 @@ export default class Survey extends Component {
 
         <RadioButton PROP={PROP} />
       </Card>
-      <Button title="Finish Survey" />
-      </View>
+      <Button title="Finish Survey" onPress={() => navigation.navigate("SurveyList")}/>
+      </ScrollView>
+      </SafeAreaView>
+
 
     );
   }
-}
+//}
 
 const styles = StyleSheet.create({
   container: {
@@ -108,6 +122,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       textAlign: 'center',
+    },
+    imagestyle: {
+        		position: "relative",
+        		width: 20,
+        		height: 20,
+        		marginLeft: 10,
+        		marginTop: 10,
     },
   subheading: {
       margin: 5,

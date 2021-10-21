@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f10d61de-7673-40b7-8e72-465a9eca7a35" name="Default Changelist" comment="" />
+    <list default="true" id="f10d61de-7673-40b7-8e72-465a9eca7a35" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/PageLoader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Dashboard/DashboardMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Dashboard/DashboardMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/SurveyScreen/Survey-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/SurveyScreen/Survey-list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/SurveyScreen/Survey.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/SurveyScreen/Survey.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/SurveyScreen/Vas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/SurveyScreen/Vas.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,5 +89,8 @@
       <updated>1632978222683</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

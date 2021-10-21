@@ -1,14 +1,25 @@
 import * as React from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Image, StyleSheet,Button } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, Image, SafeAreaView, StyleSheet,Button } from 'react-native';
 import Constants from 'expo-constants';
 import { Card } from 'react-native-paper';
 import Slider from "../../Components/Slider";
-
+import backButton from "../../Assets/Dashboard/backArrow.png";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Vas() {
+const navigation = useNavigation();
 return (
+      <SafeAreaView style={styles.container}>
+      <ScrollView>
       <View style={styles.container}>
+      <TouchableOpacity
+                    					onPress={() => navigation.navigate("Dashboard")}
+                    				>
+                    					<Image style={styles.imagestyle} source={backButton} />
+                    				</TouchableOpacity>
         <Card style={styles.card}>
+
         <Text style={styles.paragraph}>
                   Stress Assessment
                 </Text>
@@ -18,8 +29,10 @@ return (
                 <Image style={styles.logo} source={require('../../Assets/Survey/satisfaction-scale.png')} />
                 <Slider/>
         </Card>
-        <Button title="Finish Survey" />
       </View>
+      </ScrollView>
+      <Button title="Finish Survey" onPress={() => navigation.navigate("Dashboard")} />
+      </SafeAreaView>
   );
 }
 
@@ -43,6 +56,13 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: 'center',
     //fontFamily: "sans-serif",
+  },
+  imagestyle: {
+  		position: "relative",
+  		width: 20,
+  		height: 20,
+  		marginLeft: 10,
+  		marginTop: 10,
   },
   card: {
     alignContent: "center",

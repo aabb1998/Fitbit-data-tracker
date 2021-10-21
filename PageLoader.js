@@ -4,4 +4,4 @@ export { default as HomeScreen } from "./src/Screens/HomeScreen/HomeScreen";
 
 export { default as RegistrationScreen } from "./src/Screens/RegistrationScreen/RegistrationScreen";
 
-export { default as SurveyScreen } from "./src/Screens/SurveyScreen/SurveyScreen";
+export { default as SurveyScreen } from "./src/Screens/SurveyScreen/Survey";
