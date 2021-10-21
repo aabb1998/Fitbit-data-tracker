@@ -6,9 +6,12 @@ import {
 	Text,
 	Dimensions,
 	Alert,
+	Button,
 } from "react-native";
+import * as functions from "../../firebase/config";
 
-const duration = 180000;
+//const duration = 180000;
+const duration = 10000;
 
 export default class SimpleCircleButton extends Component {
 	constructor(props) {
@@ -36,31 +39,36 @@ export default class SimpleCircleButton extends Component {
 		this.stopStopwatch();
 		this.setState({ total: this.state.total + time });
 
-		if (this.state.colorId === 1) {
-			//the button is currently red
-			if (this.state.isCountdown) {
-				//clicked whilst still red but not expecting to (false start)
-				this.setState({ falseStarts: this.state.falseStarts + 1 });
-				this.BeginTest();
-			}
-		} //the button is currently green
-		else {
-			this.setState({ colorId: 1 });
-			this.state.responseTime = time;
+    if (this.state.colorId === 1) //the button is currently red
+    {
+      if (this.state.isCountdown) //clicked whilst still red but not expecting to (false start)
+      {
+        this.setState({falseStarts: this.state.falseStarts + 1});
+        this.BeginTest();
+      }
+    }
+    else //the button is currently green
+    {
+      this.state.responseTime = time;
+      this.setState({colorId: 1});
 
-			if (time < 100 && !this.state.started) {
-				//indicates invalid test
-				this.state.falseStarts = this.state.falseStarts + 1;
-			} else {
-				this.state.results.push(time);
-				if (time > 355) {
-					this.state.lapses = this.state.lapses + 1;
-				}
-			}
-			this.BeginTest();
-		}
-		this.state.started = "";
-	};
+      if (time < 100 && !this.state.started )//indicates invalid test
+      {
+        this.state.falseStarts = this.state.falseStarts + 1;
+      }
+      else 
+      {
+        if (!this.state.started){
+          this.state.results.push(time);
+        }
+        if (time > 355){
+          this.state.lapses = this.state.lapses + 1;
+        }
+      }
+      this.BeginTest();      
+    }
+    this.state.started = "";
+  };
 
 	BeginTest() {
 		this.stopStopwatch();
@@ -80,18 +88,20 @@ export default class SimpleCircleButton extends Component {
 		}
 	}
 
-	EndPVT() {
-		//send data to firebase etc
-		var total = 0;
+  EndPVT(){
+    this.stopStopwatch();
+    var score = 100 - ((this.state.falseStarts + this.state.lapses)/(this.state.results.length + this.state.falseStarts)*100).toFixed(2);
+    
+    var data = {
+      score: score,
+      testDateTime: Date.now(),
+      uid: "2NtcfLvuM4M7IMSTScMFIUi6wih1",
+      results: this.state.results
+    }
 
-		for (var i = 0; i < this.state.results.length; i++) {
-			alert("res:" + this.state.results[i]);
-			total += this.state.results[i];
-		}
-		var avg = total / this.state.results.length;
-		alert("total" + total);
-		alert("avg" + avg);
-	}
+    functions.createPVTRecord(data);
+    alert("PVT Completed Successfully! Your score was " + score + "%");
+  }
 
 	startStopwatch() {
 		this.setState({
@@ -144,22 +154,10 @@ export default class SimpleCircleButton extends Component {
 
 				<View style={styles.dataSection}>
 					<View style={styles.dataItem}>
-						<Text>Time: </Text>
-						<Text>{this.state.time}</Text>
-					</View>
-					<View style={styles.dataItem}>
-						<Text>Total: </Text>
-						<Text>{this.state.total}</Text>
-					</View>
-					<View style={styles.dataItem}>
-						<Text>Interval:</Text>
-						<Text> {this.state.testInterval}</Text>
-					</View>
-					<View style={styles.dataItem}>
-						<Text>Misclicks:</Text>
-						<Text>{this.state.falseStarts}</Text>
+						<Text>Response Time: {this.state.responseTime} ms</Text>
 					</View>
 				</View>
+				<Button title="End Test" onPress={() => this.EndPVT()}/>
 			</View>
 		);
 	}
@@ -222,5 +220,3 @@ const styles = StyleSheet.create({
 		height: 90,
 	},
 });
-
-/*NOTE: THIS IS USED BASED ON A TUTORIAL AT https://www.jsparling.com/round-buttons-in-react-native/*/

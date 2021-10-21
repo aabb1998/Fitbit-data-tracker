@@ -10,6 +10,7 @@ import Dashboard from "./src/Components/Dashboard/Dashboard";
 import FitbitWebView from "./src/Components/FitbitWebView";
 import Sleep from "./src/Components/SleepPage/Sleep";
 import PVTScreen from "./src/Screens/PVTScreen/PVTScreen";
+import PVTDetails from "./src/Screens/PVTScreen/PVTDetails";
 
 // import { decode, encode } from "base-64";
 // if (!global.btoa) {
@@ -26,7 +27,7 @@ export default function App() {
 	const [user, setUser] = useState(null);
 
 	return (
-		<NavigationContainer>
+		/*<NavigationContainer>
 			<Stack.Navigator screenOptions={{ headerShown: false }}>
 				{user ? (
 					<Stack.Screen name="Home">
@@ -56,11 +57,13 @@ export default function App() {
 						<Stack.Screen name="PVT" component={PVTScreen} />
 					</>
 				)}
-				{/* <Stack.Screen name="Dashboard" component={Dashboard} />
+				//{ <Stack.Screen name="Dashboard" component={Dashboard} />
 				<Stack.Screen name="fitbitView" component={FitbitWebView} />
-				{<Stack.Screen name="Dashboard" component={Dashboard} />} */}
-			</Stack.Navigator>
+				//{<Stack.Screen name="Dashboard" component={Dashboard} />} }
+			</Stack.Navigator>*/
+			<NavigationContainer>
+			<PVTScreen></PVTScreen>
 		</NavigationContainer>
-		// <PVTScreen></PVTScreen>
+		//<PVTDetails></PVTDetails>
 	);
 }

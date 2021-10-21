@@ -109,7 +109,7 @@ export async function createPVTRecord(data) {
         const randomNum = Math.floor(Math.random() * characters.length);
         randomStr += characters[randomNum];
     }
-    firebase.firestore().collection("pvtResults").doc(randomStr).set({score:data.score, testDateTime:data.testDateTime, uid:data.uid,})
+    firebase.firestore().collection("pvtResults").doc(randomStr).set({score:data.score, testDateTime:data.testDateTime, uid:data.uid, results: data.results})
     console.log('PVT Result Record created');
 }
 
