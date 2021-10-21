@@ -7,7 +7,6 @@ import {
 	Dimensions,
 	Alert,
 } from "react-native";
-import * as functions from "../../firebase/config";
 
 //const duration = 180000;
 const duration = 20000;
@@ -153,9 +152,20 @@ export default class SimpleCircleButton extends Component {
 
 				<View style={styles.dataSection}>
 					<View style={styles.dataItem}>
-						<Text>Response Time:</Text>
-						<Text>{this.state.responseTime}</Text>
-						<Text>ms</Text>
+						<Text>Time: </Text>
+						<Text>{this.state.time}</Text>
+					</View>
+					<View style={styles.dataItem}>
+						<Text>Total: </Text>
+						<Text>{this.state.total}</Text>
+					</View>
+					<View style={styles.dataItem}>
+						<Text>Interval:</Text>
+						<Text> {this.state.testInterval}</Text>
+					</View>
+					<View style={styles.dataItem}>
+						<Text>Misclicks:</Text>
+						<Text>{this.state.falseStarts}</Text>
 					</View>
 				</View>
 			</View>

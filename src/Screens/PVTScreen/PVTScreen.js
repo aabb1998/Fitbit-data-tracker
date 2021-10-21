@@ -55,6 +55,15 @@ export default function PVTScreen(props) {
 					</Text>
 				</View>
 			</View>
+			<View style={localStyles.contentContainer}>
+				<SimpleCircleButton />
+				<TouchableOpacity style={localStyles.button}>
+					<Text style={{ color: "white" }}>End Test</Text>
+				</TouchableOpacity>
+			</View>
+			<View style={localStyles.resultContainer}>
+				<Text style={localStyles.heading}>Response Time: 0.345</Text>
+			</View>
 		</SafeAreaView>
 	);
 }
