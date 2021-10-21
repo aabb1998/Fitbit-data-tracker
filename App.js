@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
 import PSS from './src/Screens/SurveyScreen/PSS.survey';
 import STAI from './src/Screens/SurveyScreen/STAI.survey';
+import { GraphScreen } from "./Index";
 
 // import { decode, encode } from "base-64";
 // if (!global.btoa) {
@@ -47,6 +48,29 @@ export default function App() {
 							options={{ headerLeft: false }}
 							component={Dashboard}
 						/>
+						
+						<Stack.Screen
+							name="Graph"
+							options={{ headerLeft: false }}
+							component={GraphScreen}
+						/>
+						<Stack.Screen
+							name="PSS"
+							options={{
+								headerShown: true,
+							  }}
+							component={PSS}
+						/>
+						<Stack.Screen
+							name="STAI"
+							options={{
+								headerShown: true,
+							  }}
+							component={STAI}
+						/>
+
+
+
 					</>
 				)}
 				{/* <Stack.Screen name="Dashboard" component={Dashboard} */}
