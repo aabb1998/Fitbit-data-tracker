@@ -1,13 +1,15 @@
 import "react-native-gesture-handler";
 import React, { useEffect, useState, Component } from "react";
 import { Text, StyleSheet, View, Linking } from "react-native";
-import { HomeScreen } from "./Index";
-import { LoginScreen } from "./Index";
-import { RegistrationScreen } from "./Index";
+import { HomeScreen } from "./PageLoader";
+import { LoginScreen } from "./PageLoader";
+import { RegistrationScreen } from "./PageLoader";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
 import FitbitWebView from "./src/Components/FitbitWebView";
+import Sleep from "./src/Components/SleepPage/Sleep";
+import PVTScreen from "./src/Screens/PVTScreen/PVTScreen";
 import PVTScreen from "./src/Screens/PVTScreen/PVTScreen";
 import PVTDetails from "./src/Screens/PVTDetailsScreen/PVTDetails";
 
@@ -26,7 +28,7 @@ export default function App() {
 	const [user, setUser] = useState(null);
 
 	return (
-		/*<NavigationContainer>
+		<NavigationContainer>
 			<Stack.Navigator screenOptions={{ headerShown: false }}>
 				{user ? (
 					<Stack.Screen name="Home">
@@ -52,13 +54,15 @@ export default function App() {
 							name="fitbitView"
 							component={FitbitWebView}
 						/>
+						<Stack.Screen name="Sleep" component={Sleep} />
+						<Stack.Screen name="PVT" component={PVTScreen} />
 					</>
 				)}
-				{/* <Stack.Screen name="Dashboard" component={Dashboard} /> }
-				{/* <Stack.Screen name="fitbitView" component={FitbitWebView} /> }
+				{/* <Stack.Screen name="Dashboard" component={Dashboard} />
+				<Stack.Screen name="fitbitView" component={FitbitWebView} />
+				{<Stack.Screen name="Dashboard" component={Dashboard} />} */}
 			</Stack.Navigator>
-		</NavigationContainer>*/
-		//<PVTScreen></PVTScreen>
-		<PVTDetails></PVTDetails>
+		</NavigationContainer>
+		// <PVTScreen></PVTScreen>
 	);
 }
