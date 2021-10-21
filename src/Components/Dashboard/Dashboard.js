@@ -207,7 +207,7 @@ const Dashboard = ({ navigation }) => {
 				<View style={styles.vasSection}>
 					<View style={styles.vasSectionHeader}>
 						<Text style={{ fontSize: 20, fontWeight: "900" }}>
-							Visual Analog Scale
+							Stress Assessment
 						</Text>
 						<TouchableOpacity
 							style={{
@@ -221,6 +221,7 @@ const Dashboard = ({ navigation }) => {
 								fontFamily: "sans-serif",
 								borderRadius: 20,
 							}}
+							onPress={() => navigation.navigate("VAS")}
 						>
 							<Text style={styles.favoriteText}>START VAS</Text>
 						</TouchableOpacity>

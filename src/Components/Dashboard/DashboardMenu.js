@@ -36,7 +36,7 @@ const DashboardMenu = () => {
 	return (
 		<View>
 			<View style={styles.floatingMenu}>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate("SurveyList")}>
 					<Image style={styles.floatingMenuImage} source={survey} />
 				</TouchableOpacity>
 				<TouchableOpacity>
