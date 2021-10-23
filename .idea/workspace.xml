@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10d61de-7673-40b7-8e72-465a9eca7a35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Assets/Survey/sleep image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Screens/SurveyScreen/KSS-Graph.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Screens/SurveyScreen/VAS-Graph.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/fitbitdatatracker/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/fitbitdatatracker/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/SurveyScreen/Survey-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/SurveyScreen/Survey-list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/SurveyScreen/Survey.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/SurveyScreen/Survey.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/SurveyScreen/Vas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/SurveyScreen/Vas.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
