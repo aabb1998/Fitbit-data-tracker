@@ -61,7 +61,7 @@ const data = [
   '6',
   '7',
   '6',
- 
+
 ];
 
 const App: () => React$Node = () => {

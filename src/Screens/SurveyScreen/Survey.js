@@ -59,7 +59,7 @@ const navigation = useNavigation();
       <SafeAreaView style={styles.container2}>
       <ScrollView>
       <TouchableOpacity
-         onPress={() => navigation.navigate("Dashboard")}>
+         onPress={() => navigation.navigate("SurveyList")}>
          <Image style={styles.imagestyle} source={backButton} />
          </TouchableOpacity>
 

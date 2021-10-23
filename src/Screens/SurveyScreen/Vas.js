@@ -14,7 +14,7 @@ return (
       <ScrollView>
       <View style={styles.container}>
       <TouchableOpacity
-                    					onPress={() => navigation.navigate("Dashboard")}
+                    					onPress={() => navigation.navigate("SurveyList")}
                     				>
                     					<Image style={styles.imagestyle} source={backButton} />
                     				</TouchableOpacity>
