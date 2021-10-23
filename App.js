@@ -13,6 +13,8 @@ import PVTScreen from "./src/Screens/PVTScreen/PVTScreen";
 import VAS from "./src/Screens/SurveyScreen/Vas";
 import SurveyList from "./src/Screens/SurveyScreen/Survey-list";
 import KSS from "./src/Screens/SurveyScreen/Survey";
+import KSSGraph from "./src/Screens/SurveyScreen/KSS-Graph";
+import VASGraph from "./src/Screens/SurveyScreen/VAS-Graph";
 
 // import { decode, encode } from "base-64";
 // if (!global.btoa) {
@@ -60,6 +62,9 @@ export default function App() {
 						<Stack.Screen name="VAS" component={VAS} />
 						<Stack.Screen name="SurveyList" component={SurveyList} />
 						<Stack.Screen name="KSS" component={KSS} />
+						<Stack.Screen name="KSSGraph" component={KSSGraph} />
+						<Stack.Screen name="VASGraph" component={VASGraph} />
+
 					</>
 				)}
 				{/* <Stack.Screen name="Dashboard" component={Dashboard} />

@@ -31,7 +31,7 @@ return (
         </Card>
       </View>
       </ScrollView>
-      <Button title="Finish Survey" onPress={() => navigation.navigate("Dashboard")} />
+      <Button title="Finish Survey" onPress={() =>{alert('Thank you for completing survey.'); navigation.navigate("SurveyList")}} />
       </SafeAreaView>
   );
 }

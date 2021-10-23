@@ -59,10 +59,9 @@ const navigation = useNavigation();
       <SafeAreaView style={styles.container2}>
       <ScrollView>
       <TouchableOpacity
-                        					onPress={() => navigation.navigate("Dashboard")}
-                        				>
-                        					<Image style={styles.imagestyle} source={backButton} />
-                        				</TouchableOpacity>
+         onPress={() => navigation.navigate("Dashboard")}>
+         <Image style={styles.imagestyle} source={backButton} />
+         </TouchableOpacity>
 
               <Text style={styles.paragraph2}>
                 Karolinska Sleepiness Scale
@@ -74,7 +73,7 @@ const navigation = useNavigation();
 
         <RadioButton PROP={PROP} />
       </Card>
-      <Button title="Finish Survey" onPress={() => navigation.navigate("SurveyList")}/>
+      <Button title="Finish Survey" onPress={() =>{alert('Thank you for completing survey.'); navigation.navigate("SurveyList")}}/>
       </ScrollView>
       </SafeAreaView>
 
