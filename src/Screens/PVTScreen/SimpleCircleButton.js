@@ -206,17 +206,19 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		marginTop: 20,
 		width: 350,
+		marginBottom:20,
+		alignContent: "center"
 	},
 	dataItem: {
 		display: "flex",
 		flexDirection: "column",
-		width: 80,
+		width: 300,
 		alignContent: "center",
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: "#C4C4C4",
 		padding: 7,
 		borderRadius: 10,
-		height: 90,
+		height: 40,
 	},
 });
