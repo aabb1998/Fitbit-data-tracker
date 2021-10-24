@@ -207,7 +207,7 @@ const Dashboard = ({ navigation }) => {
 				<View style={styles.vasSection}>
 					<View style={styles.vasSectionHeader}>
 						<Text style={{ fontSize: 20, fontWeight: "900" }}>
-							Visual Analog Scale
+							Stress Assessment
 						</Text>
 						<TouchableOpacity
 							style={{
@@ -221,18 +221,19 @@ const Dashboard = ({ navigation }) => {
 								fontFamily: "sans-serif",
 								borderRadius: 20,
 							}}
+							onPress={() => navigation.navigate("VAS")}
 						>
-							<Text style={styles.favoriteText}>START VAS</Text>
+							<Text style={styles.favoriteText}>BEGIN</Text>
 						</TouchableOpacity>
 					</View>
 					<View
 						style={{
 							display: "flex",
 							justifyContent: "center",
-							marginLeft: 70,
+							marginLeft: 50,
 						}}
 					>
-						<Text>VAS last completed on 19/10/21</Text>
+						<Text>You're due for your stress assessment!</Text>
 					</View>
 				</View>
 				<View style={styles.vasSection}>
