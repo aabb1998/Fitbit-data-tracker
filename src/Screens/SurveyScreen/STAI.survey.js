@@ -2,6 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 
+const _onPressFinish = () => {
+    alert('Thank you. Your score: ')
+}
+const _onPressSkip = () => {
+    alert('Loading dashboard')
+}
 const STAI = () => {
     return (
         <ScrollView style={styles.scrollView}>
@@ -880,10 +886,10 @@ const STAI = () => {
                 </View>
 
                 <View style={styles.bottom}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={_onPressSkip}>
                         <Text style={styles.button}>SKIP</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={_onPressFinish}> 
                         <Text style={styles.button}>FINISH</Text>
                     </TouchableOpacity>
                 </View>

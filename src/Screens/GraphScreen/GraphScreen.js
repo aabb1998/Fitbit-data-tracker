@@ -44,6 +44,9 @@ export default function GraphScreen({ navigation }) {
 				<ScrollView>
 					<View style={styles.container}>
 						<View style={styles.mainContainer}>
+						<View style={{ flexDirection: "row", marginTop: 30, alignItems: "center", }}>
+							<Text style={styles.textHeader}>Weekly Survey</Text>
+						</View>
 							<View style={{ flexDirection: "row", marginTop: 30, alignItems: "center", }}>
 								<Text style={styles.textHeader}>PSS</Text>
 								<TouchableOpacity
@@ -61,11 +64,11 @@ export default function GraphScreen({ navigation }) {
 									<LineChart
 										data={{
 											labels: [
-												"January", "February", "March", "April", "May", "June"
+												"Week 1", "Weekk 2", "Week 3", "Week 4", "May", "Week 5"
 											],
 											datasets: [
 												{
-													data: [30, 15, 45, 26, 60, 30],
+													data: [18,23,20,30,26,15],
 												},
 											],
 										}}

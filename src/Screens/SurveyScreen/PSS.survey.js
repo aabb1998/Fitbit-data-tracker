@@ -1,7 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 
+const _onPressFinish = () => {
+    alert('Scores ranging from 0-13 would be considered low stress. \n\nScores ranging from 27-40 would be considered high perceived stress. \n\nScores ranging from 14-26 would be considered moderate stress. \n\nYour score is:'+score);
+    <View>
+    <Text style={styles.description}>Your score:{score}</Text>
+    <Text style={styles.description}>Scores ranging from 0-13 would be considered low stress.</Text>
+    <Text style={styles.description}>Scores ranging from 14-26 would be considered moderate stress</Text>
+    <Text style={styles.description}>Scores ranging from 27-40 would be considered high perceived stress.</Text>
+    </View>
+}
+const _onPressSkip = () => {
+    alert('Loading dashboard')
+}
+var score = 0;
+const answer0 = ()=> {
+    score += 4;
+    return score;
+}
+const answer1 = ()=>{
+    score += 3;
+    return score;
+}
+const answer2 = ()=>{
+    score += 2;
+    return score;
+}
+const answer3 = ()=>{
+    score += 1;
+    return score;
+}
+const answer4 = ()=>{
+    score += 0;
+    return score;
+}
 const PSS = () => {
     return (
         <ScrollView style={styles.scrollView}>
@@ -15,7 +49,8 @@ const PSS = () => {
                 </View>
 
                 <View>
-                    <Text style={styles.scale}>Choose appropriate answer for each question </Text>
+                    <Text style={styles.scale}>PSS scores are obtained by reversing responses</Text>
+                    <Text style={styles.scale}>(0 = 4, 1 = 3, 2 = 2, 3 = 1, 4 = 0)</Text>
                     <Text style={styles.scale}>0 - never</Text>
                     <Text style={styles.scale}>1 - almost never</Text>
                     <Text style={styles.scale}>2 - sometimes</Text>
@@ -29,23 +64,23 @@ const PSS = () => {
                         happened unexpectedly? </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -57,23 +92,23 @@ const PSS = () => {
                         important things in your life? </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -83,23 +118,23 @@ const PSS = () => {
                     <Text style={styles.question}>Question 3: In the last month, how often have you felt nervous and stressed? </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -110,23 +145,23 @@ const PSS = () => {
                         your personal problems? </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -136,23 +171,23 @@ const PSS = () => {
                     <Text style={styles.question}>Question 5: In the last month, how often have you felt that things were going your way?</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -163,23 +198,23 @@ const PSS = () => {
                         all the things that you had to do? </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -191,23 +226,23 @@ const PSS = () => {
                         your life?</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -219,23 +254,23 @@ const PSS = () => {
                     </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -247,23 +282,23 @@ const PSS = () => {
                         happened that were outside of your control?</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -275,23 +310,23 @@ const PSS = () => {
                         you could not overcome them?</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer0} style={styles.optionButton}>
                         <Text style={styles.option}>0</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
 
@@ -299,20 +334,18 @@ const PSS = () => {
 
 
                 <View style={styles.bottom}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>_onPressSkip()}>
                         <Text style={styles.button}>SKIP</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress ={()=>_onPressFinish()}>
                         <Text style={styles.button}>FINISH</Text>
                     </TouchableOpacity>
                 </View>
-                <View>
-                    <Text style={styles.score}>Your score: _____</Text>
-                    <Text style={styles.description}>Scores ranging from 0-13 would be considered low stress.</Text>
-                    <Text style={styles.description}>Scores ranging from 14-26 would be considered moderate stress</Text>
-                    <Text style={styles.description}>Scores ranging from 27-40 would be considered high perceived stress.</Text>
+                <View style={styles.bottom}>
+                    <TouchableOpacity >
+                        <Text style={styles.button}>Go to dashboard</Text>
+                    </TouchableOpacity>
                 </View>
-
             </View>
         </ScrollView>
     )
