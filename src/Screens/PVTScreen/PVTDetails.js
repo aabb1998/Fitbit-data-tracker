@@ -1,70 +1,66 @@
 import React, {Component , useEffect} from 'react';
 import { LineChart} from "react-native-chart-kit";
-import * as functions from "../../firebase/config";
+
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Alert, Button} from 'react-native';
 import { render } from 'react-dom';
+import firebase from "firebase";
+import "@firebase/auth";
+import "@firebase/firestore";
 
+const firebaseConfig = {
+	apiKey: "AIzaSyAi3OxyKKck1xon1mFU-cDG1bMN16kAMe8",
+	authDomain: "fitbit-data-tracker.firebaseapp.com",
+	projectId: "fitbit-data-tracker",
+	storageBucket: "fitbit-data-tracker.appspot.com",
+	messagingSenderId: "890856216222",
+	appId: "1:890856216222:web:889f2fdc72320094b7cd8f",
+};
 
 const labels1 = [
-  '21/10',
-  '22/10',
-  '23/10',
-  '24/10',
-  '25/10',
-  '26/10',
   ];
   const data1 = [
-  Math.random() * 100,
-  Math.random() * 100,
-  Math.random() * 100,
-  Math.random() * 100,
-  Math.random() * 100,
-  Math.random() * 100,
+    0
   ];
   
 const labels2 = [
   ];
   const data2 = [
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
-  Math.random() * 1000,
+    0
   ];
 
 
   export default class PVTDetails extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        sd1: []
+      };
+    }
 
-  DisplayRes()
+  async DisplayRes()
   {
-    var res = functions.getAllResults();
-    //How do I actually use the data?
+    var arr = [];
+    const citiesRef = firebase.firestore().collection('pvtResults');
+    const snapshot = await citiesRef.get();
+    snapshot.forEach(doc => {
+      //console.log(doc.data());
+      arr.push(doc.data());
+    });
+    for (let i = 0; i < arr.length; i++)
+    {
+        console.log(arr[i]);
+        data1.push(arr[i].score);
+        this.state.sd1.push(arr[i].score);
+        //var date = Date.parse(arr[i].testDateTime);
+        labels1.push(arr[i].testDateTime);
+    }
+
+    for (let i = 0; i < data1.length; i++)
+    {
+        console.log(data1[i]);
+    }
   }
+
 render(){
     return (
       <View>
@@ -81,7 +77,7 @@ render(){
                 labels: labels1,
                 datasets: [
                   {
-                    data: data1,
+                    data: data1
                   },
                 ],
               }}

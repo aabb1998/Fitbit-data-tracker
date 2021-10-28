@@ -115,7 +115,15 @@ export async function createPVTRecord(data) {
 
 //READ
 export async function getAllPVTResults() { //returns all PVT Result records from the database
-    return firebase.firestore().collection("pvtResults").get();
+    //var res = firebase.firestore().collection("pvtResults").get();
+    console.log('NEW');
+    var data = [];
+    const citiesRef = firebase.firestore().collection('pvtResults');
+    const snapshot = await citiesRef.get();
+    snapshot.forEach(doc => {
+        data.push(doc.data());
+    });
+    return data;
 }
 
 export async function getPVTResultByDocumentID(data) { //returns only the PVT Result document with the matching document ID

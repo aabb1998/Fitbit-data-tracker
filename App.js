@@ -15,6 +15,8 @@ import SurveyList from "./src/Screens/SurveyScreen/Survey-list";
 import KSS from "./src/Screens/SurveyScreen/Survey";
 import KSSGraph from "./src/Screens/SurveyScreen/KSS-Graph";
 import VASGraph from "./src/Screens/SurveyScreen/VAS-Graph";
+import PVTDetails from "./src/Screens/PVTScreen/PVTDetails";
+
 
 // import { decode, encode } from "base-64";
 // if (!global.btoa) {
@@ -32,46 +34,8 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-			<Stack.Navigator screenOptions={{ headerShown: false }}>
-				{user ? (
-					<Stack.Screen name="Home">
-						{(props) => <HomeScreen {...props} extraData={user} />}
-					</Stack.Screen>
-				) : (
-					<>
-						<Stack.Screen
-							name="Login"
-							options={{ headerLeft: false }}
-							component={LoginScreen}
-						/>
-						<Stack.Screen
-							name="Registration"
-							component={RegistrationScreen}
-						/>
-						<Stack.Screen
-							name="Dashboard"
-							options={{ headerLeft: false }}
-							component={Dashboard}
-						/>
-						<Stack.Screen
-							name="fitbitView"
-							component={FitbitWebView}
-						/>
-						<Stack.Screen name="Sleep" component={Sleep} />
-						<Stack.Screen name="PVT" component={PVTScreen} />
-						<Stack.Screen name="VAS" component={VAS} />
-						<Stack.Screen name="SurveyList" component={SurveyList} />
-						<Stack.Screen name="KSS" component={KSS} />
-						<Stack.Screen name="KSSGraph" component={KSSGraph} />
-						<Stack.Screen name="VASGraph" component={VASGraph} />
-
-					</>
-				)}
-				{/* <Stack.Screen name="Dashboard" component={Dashboard} />
-				<Stack.Screen name="fitbitView" component={FitbitWebView} />
-				{<Stack.Screen name="Dashboard" component={Dashboard} />} */}
-			</Stack.Navigator>
+			<PVTDetails></PVTDetails>
+			
 		</NavigationContainer>
-		// <PVTScreen></PVTScreen>
 	);
 }
