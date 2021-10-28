@@ -27,9 +27,6 @@ const Dashboard = ({ navigation }) => {
 	const [heartData, setHeartData] = useState();
 	const [userInfo, setUserInfo] = useState({});
 	const [userToken, setUserToken] = useState("");
-	const onNotificationPress = () => {
-		navigation.navigate("Notifications")
-	}
 
 	function getData() {
 		fetch("https://api.fitbit.com/1/user/-/profile.json", {
@@ -174,23 +171,6 @@ const Dashboard = ({ navigation }) => {
 							{profileData?.user?.fullName}
 						</Text>
 					</View>
-					<TouchableOpacity
-					   onPress={() => onNotificationPress()}
-
-					   style={{
-						    backgroundColor: "#2D14C4",
-							padding: 5,
-							paddingLeft: 8,
-							paddingRight: 8,
-							color: "white",
-							fontSize: 12,
-							fontWeight: 800,
-							fontFamily: "sans-serif",
-							borderRadius: 20,
-					   }}
-					>
-                        <Text style={styles.favoriteText}>Notifications</Text>
-					</TouchableOpacity>
 
 					<Text style={styles.userSectionName}></Text>
 				</View>
@@ -235,7 +215,6 @@ const Dashboard = ({ navigation }) => {
 								padding: 5,
 								paddingLeft: 8,
 								paddingRight: 8,
-								alignContent: "right",
 								color: "white",
 								fontSize: 12,
 								fontWeight: 800,
