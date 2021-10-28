@@ -66,7 +66,7 @@ export default function NotificationScreen({ navigation }) {
 					{
 						text: "Exit",
 						onPress: () => Alert.alert("Cancel Pressed"),
-						style: "cancel",
+						//style: "cancel",
 					},
 				],
 				{
