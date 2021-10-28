@@ -14,6 +14,16 @@ export default StyleSheet.create({
 		margin: 10,
 		resizeMode: 'contain',
 	},
+	alertContainer: {
+		backgroundColor: "#6C60CC",
+		marginLeft: 500,
+		marginRight: 500,
+		marginTop: 20,
+		height: 48,
+		borderRadius: 15,
+		justifyContent: "center",
+		alignItems: "center"
+	},
 	input: {
 		height: 48,
 		borderRadius: 5,
@@ -27,11 +37,11 @@ export default StyleSheet.create({
 	},
 	button: {
 		backgroundColor: "#6C60CC",
-		marginLeft: 30,
-		marginRight: 30,
+		marginLeft: 500,
+		marginRight: 500,
 		marginTop: 20,
 		height: 48,
-		borderRadius: 5,
+		borderRadius: 15,
 		alignItems: "center",
 		justifyContent: "center",
 	},

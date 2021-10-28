@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useState, Component } from "react";
+import { Image, Text, TextInput, TouchableOpacity, View, Alert, Button } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./styles";
 import { firebase } from "../../firebase/config";
@@ -58,6 +58,22 @@ export default function NotificationScreen({ navigation }) {
 			.catch((error) => {
 				alert(error);
 			});
+
+		const showAlert = () => {
+			Alert.alert(
+				"Subscribed!",
+				[
+					{
+						text: "Exit",
+						onPress: () => Alert.alert("Cancel Pressed"),
+						style: "cancel",
+					},
+				],
+				{
+					cancelable: true,
+				}
+			);
+		}
 	};
 
 	return (
@@ -74,23 +90,23 @@ export default function NotificationScreen({ navigation }) {
 			      style={styles.logo}
 			      source={require("../../../assets/notification.png")}
 			    />
-				<TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
-                    <Text style={styles.buttonText}>Receive Daily Survey Reminders</Text>
-                </TouchableOpacity>
+				<View style={styles.button} onPress={() => this.showAlert()}>
+						<Text style={styles.buttonText}>Receive Daily Survey Reminders</Text>
+				</View>
 
-				<TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
+				<TouchableOpacity style={styles.button} onPress={() => this.showAlert()}>
                     <Text style={styles.buttonText}>Receive Weekly Survey Reminders</Text>
                 </TouchableOpacity>
 				
-                <TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
+                <TouchableOpacity style={styles.button} onPress={() => this.showAlert()}>
                     <Text style={styles.buttonText}>Receive Sleep Data Updates</Text>
                 </TouchableOpacity>
 
-				<TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
+				<TouchableOpacity style={styles.button} onPress={() => this.showAlert()}>
                     <Text style={styles.buttonText}>Receive PVT Reminders</Text>
                 </TouchableOpacity>
 
-				<TouchableOpacity style={styles.button} onPress={() => this.showNotification()}>
+				<TouchableOpacity style={styles.button} onPress={() => this.showAlert()}>
                     <Text style={styles.buttonText}>Unsubscribe</Text>
                 </TouchableOpacity>
 
