@@ -1,7 +1,7 @@
 import React, {Component , useEffect} from 'react';
 import { LineChart} from "react-native-chart-kit";
 
-import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Alert, Button} from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Alert, Button, ActivityIndicator} from 'react-native';
 import { render } from 'react-dom';
 import firebase from "firebase";
 import "@firebase/auth";
@@ -33,7 +33,8 @@ const labels2 = [
     constructor(props) {
       super(props);
       this.state = {
-        sd1: []
+        sd1: [],
+        sl1: [],
       };
     }
 
@@ -62,6 +63,8 @@ const labels2 = [
   }
 
 render(){
+  if (/*this.state.sd1*/ 1 == 1){
+    if(/*this.state.sd1.length*/ 1 == 1){
     return (
       <View>
           <View
@@ -74,12 +77,19 @@ render(){
           <View style={{alignItems: 'center'}}>
             <LineChart
               data={{
-                labels: labels1,
+                labels: this.state.sl1,
                 datasets: [
                   {
-                    data: data1
-                  },
-                ],
+                    data: [
+                      Math.random() * 100,
+                      Math.random() * 100,
+                      Math.random() * 100,
+                      Math.random() * 100,
+                      Math.random() * 100,
+                      Math.random() * 100
+                    ]
+                  }
+                ]
               }}
               width={Dimensions.get('window').width - 50} // from react-native
               height={220}
@@ -150,5 +160,49 @@ render(){
           </View>
           <Button title="End Test" onPress={() => this.DisplayRes()}/>
         </View>
-)}
+)
+} else {
+  return(
+  
+  <View style={{justifyContent:"center",alignItems:'center',flex:1}}>
+  
+  <ActivityIndicator size="large"/>
+  
+  </View>
+  
+  )
+    }
+  
+  }else {
+  
+    return(
+    
+    <View style={{justifyContent:"center",alignItems:'center',flex:1}}>
+    
+   <Text>no data found</Text>
+    
+    </View>
+    )}
+
+}
+componentDidMount=()=>{
+  console.log("hi");
+  this.getChartData();
+}
+getChartData = async ()=>{
+  var arr = [];
+    const citiesRef = firebase.firestore().collection('pvtResults');
+    const snapshot = await citiesRef.get();
+    snapshot.forEach(doc => {
+      console.log(doc.data());
+      arr.push(doc.data());
+    });
+    for (let i = 0; i < arr.length; i++)
+    {
+        this.state.sd1.push(arr[i].score);
+        this.state.sl1.push(arr[i].testDateTime);
+    }
+    console.log('first object is ');
+    console.log(this.state.sd1[0]);
+}
 }
