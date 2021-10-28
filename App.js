@@ -16,7 +16,7 @@ import KSS from "./src/Screens/SurveyScreen/Survey";
 import KSSGraph from "./src/Screens/SurveyScreen/KSS-Graph";
 import VASGraph from "./src/Screens/SurveyScreen/VAS-Graph";
 import PVTDetails from "./src/Screens/PVTScreen/PVTDetails";
-
+import PVTDetailsTest from "./src/Screens/PVTScreen/PVTDetailsTest";
 
 // import { decode, encode } from "base-64";
 // if (!global.btoa) {
@@ -34,8 +34,7 @@ export default function App() {
 
 	return (
 		<NavigationContainer>
-			<PVTDetails></PVTDetails>
-			
+			<PVTDetailsTest />
 		</NavigationContainer>
 	);
 }
