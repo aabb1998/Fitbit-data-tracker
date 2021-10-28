@@ -90,9 +90,9 @@ export default function NotificationScreen({ navigation }) {
 			      style={styles.logo}
 			      source={require("../../../assets/notification.png")}
 			    />
-				<View style={styles.button} onPress={() => this.showAlert()}>
+				<TouchableOpacity style={styles.button} onPress={() => this.showAlert()}>
 						<Text style={styles.buttonText}>Receive Daily Survey Reminders</Text>
-				</View>
+				</TouchableOpacity>
 
 				<TouchableOpacity style={styles.button} onPress={() => this.showAlert()}>
                     <Text style={styles.buttonText}>Receive Weekly Survey Reminders</Text>
