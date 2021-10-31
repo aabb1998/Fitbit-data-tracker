@@ -2,24 +2,41 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import {firebase} from '../../firebase/config'
+import { useNavigation } from '@react-navigation/native';
 
+
+export default function PSS ({navigation}){
 const _onPressFinish = () => {
-    alert('Scores ranging from 0-13 would be considered low stress. \n\nScores ranging from 27-40 would be considered high perceived stress. \n\nScores ranging from 14-26 would be considered moderate stress. \n\nYour score is:'+score);
-    <View>
-    <Text style={styles.description}>Your score:{score}</Text>
-    <Text style={styles.description}>Scores ranging from 0-13 would be considered low stress.</Text>
-    <Text style={styles.description}>Scores ranging from 14-26 would be considered moderate stress</Text>
-    <Text style={styles.description}>Scores ranging from 27-40 would be considered high perceived stress.</Text>
-    </View>
+    if(score<=13){
+        alert('Scores ranging from 0-13 would be considered low stress.\nYour score is:'+score)
+    }else if(13<score<=26){
+        alert('Scores ranging from 14-26 would be considered moderate stress.\nYour score is:'+score)
+    }else{
+        alert('Scores ranging from 27-40 would be considered high perceived stress.\nYour score is:'+score)
+    }
+    var date = new Date().toLocaleString()
+    const user = firebase.auth().currentUser;
+    var Uemail = user.email;
+    firebase
+    .firestore()
+    .collection('weeklySurvey')
+    .add({
+        score: score,
+        surveyDate: date,
+        surveyType: 'PSS',
+        email: Uemail,
+    })
+    navigation.navigate("Graph");
 }
 const _onPressSkip = () => {
-    alert('Loading dashboard')
+    navigation.navigate("Graph");
 }
 var score = 0;
 const answer0 = ()=> {
     score += 4;
     return score;
-}
+} 
 const answer1 = ()=>{
     score += 3;
     return score;
@@ -36,7 +53,6 @@ const answer4 = ()=>{
     score += 0;
     return score;
 }
-const PSS = () => {
     return (
         <ScrollView style={styles.scrollView}>
             <View>
@@ -341,16 +357,11 @@ const PSS = () => {
                         <Text style={styles.button}>FINISH</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.bottom}>
-                    <TouchableOpacity >
-                        <Text style={styles.button}>Go to dashboard</Text>
-                    </TouchableOpacity>
-                </View>
             </View>
         </ScrollView>
     )
 }
-export default PSS
+
 
 const styles = StyleSheet.create({
     container: {

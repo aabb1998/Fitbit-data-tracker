@@ -26,7 +26,7 @@ export default function App() {
 	const [user, setUser] = useState(null);
 
 	return (
-/* 		<NavigationContainer>
+		<NavigationContainer>
 			<Stack.Navigator screenOptions={{ headerShown: false }}>
 				{user ? (
 					<Stack.Screen name="Home">
@@ -73,10 +73,8 @@ export default function App() {
 
 					</>
 				)}
-				 <Stack.Screen name="Dashboard" component={Dashboard}
 			</Stack.Navigator>
-		</NavigationContainer> */
-		<GraphScreen/>
+		</NavigationContainer>
 
 	);
 }

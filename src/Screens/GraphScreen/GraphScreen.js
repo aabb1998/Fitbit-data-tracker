@@ -44,7 +44,7 @@ export default function GraphScreen({ navigation }) {
 				<ScrollView>
 					<View style={styles.container}>
 						<View style={styles.mainContainer}>
-						<View style={{ flexDirection: "row", marginTop: 30, alignItems: "center", }}>
+						<View style={{ flexDirection: "row", marginTop: 30, alignItems: "center",}}>
 							<Text style={styles.textHeader}>Weekly Survey</Text>
 						</View>
 							<View style={{ flexDirection: "row", marginTop: 30, alignItems: "center", }}>

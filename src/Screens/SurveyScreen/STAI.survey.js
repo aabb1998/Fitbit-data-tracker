@@ -1,14 +1,56 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import {firebase} from '../../firebase/config'
+import { useNavigation } from '@react-navigation/native';
 
-const _onPressFinish = () => {
-    alert('Thank you. Your score: ')
-}
-const _onPressSkip = () => {
-    alert('Loading dashboard')
-}
-const STAI = () => {
+export default function STAI ({navigation}){
+    const _onPressFinish = () => {
+        score2 = score - score1;
+        alert('Your score for Trait Anxiety: '+score2);
+        var date = new Date().toLocaleString()
+        const user = firebase.auth().currentUser;
+        var Uemail = user.email;
+        firebase
+        .firestore()
+        .collection('weeklySurvey')
+        .add({
+            total: score,
+            score1: score1,
+            score2: score2,
+            surveyDate: date,
+            surveyType: 'STAI',
+            email: Uemail,
+        })
+        navigation.navigate("Graph");
+    }
+    const _onPressFinishForm1 = ()=>{
+        score1 = score;
+        alert('Your score for State Anxiety: '+score1);
+    }
+    const _onPressSkip = () => {
+        navigation.navigate("Graph");
+    }
+    var score = 0;
+    var score1 = 0;
+    var score2= 0;
+    const answer1 = ()=>{
+        score += 1;
+        return score;
+    }
+    const answer2 = ()=>{
+        score += 2;
+        return score;
+    }
+    const answer3 = ()=>{
+        score += 3;
+        return score;
+    }
+    const answer4 = ()=>{
+        score += 4;
+        return score;
+    }
     return (
         <ScrollView style={styles.scrollView}>
             <View>
@@ -36,19 +78,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 1: I feel calm </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -57,19 +99,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 2: I feel secure </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -78,19 +120,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 3: I am tense </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -99,19 +141,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 4: I feel strained </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -120,19 +162,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 5: I feel at ease </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -141,19 +183,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 6: I feel upset </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -162,19 +204,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 7: I am presently worrying over possible misfortunes </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -183,19 +225,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 8: I feel satisfied </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -204,19 +246,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 9: I feel frightened </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -225,19 +267,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 10: I feel comfortable </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -246,19 +288,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 11: I feel self-confident</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -267,19 +309,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 12: I feel nervous </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -288,19 +330,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 13: I feel jitterry</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -309,19 +351,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 14: I feel indecisive</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -330,19 +372,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 15: I feel relaxed</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -351,19 +393,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 16: I feel content</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -372,19 +414,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 17: I feel worried</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -393,19 +435,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 18: I feel confused</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -414,19 +456,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 19: I feel steady</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -435,23 +477,27 @@ const STAI = () => {
                     <Text style={styles.question}>Question 20: I feel pleasant</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
-
+                <View>
+                <TouchableOpacity onPress={_onPressFinishForm1}> 
+                        <Text style={styles.button}>FINISH FORM 1</Text>
+                </TouchableOpacity>
+                </View>
 
 
                 <View>
@@ -469,19 +515,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 21: I feel pleasant</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -490,19 +536,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 22: I feel nwevous and restless</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -511,19 +557,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 23: I feel satisfied with myself</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -532,19 +578,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 24: I wish I could be as happy as other seem to be </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -553,19 +599,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 25: I feel like a failure</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -574,19 +620,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 26: I feel rested</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -595,19 +641,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 27: I am "calm, cool, and collected"</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -616,19 +662,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 28: I feel that difficulties are pilling up and so that I cannot overcome them</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -637,19 +683,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 29: I worry too much over something that really doesn't matter</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -658,19 +704,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 30: I am happy </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -679,19 +725,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 31: I have disturbing thoughts</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -700,19 +746,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 32: I lack self-confidence</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -721,19 +767,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 33: I feel secure</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -742,19 +788,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 34: I make decisions easily </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -763,19 +809,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 35: I feel inadequate</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -784,19 +830,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 36: I feel content</Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -805,19 +851,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 37: Some unimportant though run through my mind and bothers me </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -826,19 +872,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 38: I take disappointment so keenly that I can't put them out of my mind </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -847,19 +893,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 39: I am a steady person </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -868,19 +914,19 @@ const STAI = () => {
                     <Text style={styles.question}>Question 40: I get in a state of tension or turmoil as I think over my recent concerns and interests  </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer1} style={styles.optionButton}>
                         <Text style={styles.option}>1</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer2} style={styles.optionButton}>
                         <Text style={styles.option}>2</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer3} style={styles.optionButton}>
                         <Text style={styles.option}>3</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionButton}>
+                    <TouchableOpacity onPress={answer4} style={styles.optionButton}>
                         <Text style={styles.option}>4</Text>
                     </TouchableOpacity>
                 </View>
@@ -899,7 +945,7 @@ const STAI = () => {
     )
 }
 
-export default STAI
+
 
 const styles = StyleSheet.create({
     container: {
@@ -922,6 +968,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     button: {
+        textAlign:'center',
         width: '100%',
         backgroundColor: '#1A759E',
         padding: 20,
